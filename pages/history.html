@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>千年豫章 · 时空屏风 | 豫章风华</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/lib/aos/aos.css">
+  <link rel="stylesheet" href="../assets/lib/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="../css/pages/history.css">
+</head>
+<body>
+<!-- ===== 头部导航 ===== -->
+<header class="site-header">
+  <div class="container header-wrap">
+    <a href="../index.html" class="header-logo">
+      <svg class="logo-icon" width="36" height="36" viewBox="0 0 100 100" fill="none">
+        <path d="M10 70 L50 20 L90 70 Z" stroke="#C41E3A" stroke-width="4" fill="none"/>
+        <rect x="30" y="70" width="40" height="25" fill="#D4AF37"/>
+      </svg>
+      <span class="logo-text">豫章风华 · 南昌城市文化</span>
+    </a>
+    <nav class="pc-nav">
+      <a href="../index.html" class="nav-item">首页</a>
+      <a href="history.html" class="nav-item active">千年历史</a>
+      <a href="intangible.html" class="nav-item">赣鄱非遗</a>
+      <a href="scenic.html" class="nav-item">城市地标</a>
+      <a href="food.html" class="nav-item">赣味美食</a>
+      <a href="youth-culture.html" class="nav-item">文创青年</a>
+    </nav>
+    <div class="header-tools">
+      <button class="search-btn">🔍</button>
+      <div class="search-popup">
+        <input type="text" placeholder="搜索景点/美食/非遗..." class="search-input">
+        <button class="search-submit">搜索</button>
+      </div>
+      <button class="theme-toggle" title="切换明暗主题">🌓</button>
+      <button class="mobile-menu-btn">☰</button>
+      <button class="music-btn" id="musicBtn" title="播放背景音乐">
+        <span class="music-icon">🎵</span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-drawer">
+    <button class="drawer-close">✕</button>
+    <nav class="mobile-nav">
+      <a href="../index.html">首页</a>
+      <a href="history.html">千年历史</a>
+      <a href="intangible.html">赣鄱非遗</a>
+      <a href="scenic.html">城市地标</a>
+      <a href="food.html">赣味美食</a>
+      <a href="youth-culture.html">文创青年</a>
+      <a href="poem-tengwang.html">滕王阁序专题</a>
+      <a href="city-map.html">打卡地图</a>
+      <a href="feedback.html">留言反馈</a>
+    </nav>
+  </div>
+  <div class="drawer-mask"></div>
+</header>
+
+<!-- ===== 页面主体 ===== -->
+<main class="main-content">
+
+  <!-- 1. 首屏 -->
+  <section class="history-hero" data-aos="fade-in">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">豫章</h1>
+      <p class="hero-sub">公元前 202 年 · 灌婴筑城</p>
+      <div class="hero-seal">千年</div>
+    </div>
+    <div class="scroll-indicator">↓ 向下滑动 · 推开历史屏风</div>
+  </section>
+
+  <!-- 2. 四朝屏风 -->
+  <section class="dynasty-accordion-wrap" data-aos="fade-up">
+    <div class="section-title" style="margin-bottom:40px;">四朝屏风 · 一展千年</div>
+    <div class="dynasty-accordion" id="dynastyAccordion">
+      <div class="dynasty-panel" data-era="han" style="background-image: url('../assests/img/history/han-bg.jpg');">
+        <div class="panel-front">
+          <span class="dynasty-name">汉</span>
+          <span class="dynasty-sub">豫章启封</span>
+          <span class="dynasty-year">前202年</span>
+        </div>
+        <div class="panel-back">
+          <div class="panel-inner">
+            <div class="panel-img"><img src="../assests/img/history/haihuhou.jpg" alt="海昏侯遗址"></div>
+            <div class="panel-text">
+              <h3>海昏侯国 · 大汉气象</h3>
+              <p>灌婴筑城，豫章始立。海昏侯墓出土金器万件，实证"北有兵马俑，南有海昏侯"的惊世传奇。</p>
+              <button class="btn-explore" data-era="han">深入探秘 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dynasty-panel" data-era="tang" style="background-image: url('../assests/img/history/tang-bg.jpg');">
+        <div class="panel-front">
+          <span class="dynasty-name">唐</span>
+          <span class="dynasty-sub">滕阁临江</span>
+          <span class="dynasty-year">653年</span>
+        </div>
+        <div class="panel-back">
+          <div class="panel-inner">
+            <div class="panel-img"><img src="../assests/img/scenic/滕王阁.jpg" alt="滕王阁"></div>
+            <div class="panel-text">
+              <h3>滕王高阁 · 盛唐风华</h3>
+              <p>滕王李元婴建阁，王勃一篇《滕王阁序》传颂千古。"落霞与孤鹜齐飞，秋水共长天一色"，写尽洪都盛景。</p>
+              <button class="btn-explore" data-era="tang">深入探秘 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dynasty-panel" data-era="ming" style="background-image: url('../assests/img/history/ming-bg.jpg');">
+        <div class="panel-front">
+          <span class="dynasty-name">明</span>
+          <span class="dynasty-sub">洪都烟火</span>
+          <span class="dynasty-year">1363年</span>
+        </div>
+        <div class="panel-back">
+          <div class="panel-inner">
+            <div class="panel-img"><img src="../assests/img/scenic/万寿宫.jpg" alt="万寿宫"></div>
+            <div class="panel-text">
+              <h3>万寿宫 · 商贾云集</h3>
+              <p>明时南昌万寿宫香火鼎盛，江右商帮以此为精神地标，赣地烟火气与商贸繁荣交织成洪都新貌。</p>
+              <button class="btn-explore" data-era="ming">深入探秘 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dynasty-panel" data-era="modern" style="background-image: url('../assests/img/history/modern-bg.jpg');">
+        <div class="panel-front">
+          <span class="dynasty-name">近代</span>
+          <span class="dynasty-sub">八一烽火</span>
+          <span class="dynasty-year">1927年</span>
+        </div>
+        <div class="panel-back">
+          <div class="panel-inner">
+            <div class="panel-img"><img src="../assests/img/history/bayi.jpg" alt="八一起义"></div>
+            <div class="panel-text">
+              <h3>八一枪声 · 英雄城</h3>
+              <p>1927年8月1日，南昌城头一声枪响，人民军队在此诞生。红色基因融入城市血脉，英雄城名震天下。</p>
+              <button class="btn-explore" data-era="modern">深入探秘 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. 海昏侯展柜 ===== -->
+  <section class="exhibition-wrap" data-aos="fade-up">
+    <div class="section-title" style="color:#D4AF37;">🏛️ 海昏侯 · 惊世大发现</div>
+    <div class="swiper exhibition-swiper">
+      <div class="swiper-wrapper">
+
+        <!-- 1. 金饼 -->
+        <div class="swiper-slide">
+          <!-- 左：图片 -->
+          <div class="slide-image">
+            <img src="../assests/img/history/exhibit1.jpg" alt="金饼">
+          </div>
+          <!-- 右：独立内容区 -->
+          <div class="slide-content">
+            <div class="slide-content-inner">
+              <div class="content-header">
+                <span class="content-title">金饼 · 酎金制度</span>
+              </div>
+              <p class="content-desc">
+                海昏侯墓出土金饼共计 385 枚，总重约 115 公斤，为汉代诸侯王墓出土金器数量之最。
+                金饼为汉代"酎金律"之重要实物——诸侯王需按封地人口与户口数量，以黄金铸饼，
+                于宗庙祭祀时进献。每枚金饼底部多刻有重量、工匠及监造官姓名，铭文清晰，
+                是研究汉代度量衡、冶金工艺及财政制度的珍贵资料。
+              </p>
+              <div class="content-poem">
+                <div class="poem-line">赤金铸就帝王心，酎酒宗庙祭乾坤。</div>
+                <div class="poem-line">千载犹存大汉韵，一饼可抵万卷文。</div>
+              </div>
+              <div class="content-seal">
+                <div class="seal-box seal-gold"><span class="seal-text">酎金<br>重器</span></div>
+                <span class="seal-quote">"金气所钟，百代不磨"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 青铜雁鱼灯 -->
+        <div class="swiper-slide">
+          <div class="slide-image">
+            <img src="../assests/img/history/exhibit2.jpg" alt="青铜雁鱼灯">
+          </div>
+          <div class="slide-content">
+            <div class="slide-content-inner">
+              <div class="content-header">
+                <span class="content-title">青铜雁鱼灯 · 环保之光</span>
+              </div>
+              <p class="content-desc">
+                雁鱼灯整体造型为鸿雁回首衔鱼，设计巧妙——灯盘、雁颈、雁体三部分可自由拆卸组装。
+                其最精妙之处在于"环保"设计：燃灯产生的烟尘通过雁颈导入雁腹，溶于腹内清水之中，
+                有效净化室内空气。这种"水循环消烟"技术比西方同类设计早了一千余年。
+              </p>
+              <div class="content-poem">
+                <div class="poem-line">鸿雁回眸衔玉鱼，青铜鎏金照汉庭。</div>
+                <div class="poem-line">烟消水净清风起，一盏长明万古青。</div>
+              </div>
+              <div class="content-seal">
+                <div class="seal-box seal-bronze"><span class="seal-text">鸿雁<br>衔光</span></div>
+                <span class="seal-quote">"雁影摇灯，清辉千年"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 刘贺玉印 -->
+        <div class="swiper-slide">
+          <div class="slide-image">
+            <img src="../assests/img/history/exhibit3.jpg" alt="刘贺玉印">
+          </div>
+          <div class="slide-content">
+            <div class="slide-content-inner">
+              <div class="content-header">
+                <span class="content-title">刘贺玉印 · 身份铁证</span>
+              </div>
+              <p class="content-desc">
+                此印为新疆和田白玉质，印面阴刻篆书"刘贺"二字，字体方整刚劲，为汉代典型"玉印篆"风格。
+                印钮雕有龟形，龟首微昂，背甲刻有细密回纹，寓意"龟寿万年、江山永固"。
+                刘贺玉印的出土，直接印证了墓主身份——汉武帝之孙、第二代昌邑王、西汉第九位皇帝，
+                后废为海昏侯。这一玉印终结了学界关于墓主身份长达数年的争论。
+              </p>
+              <div class="content-poem">
+                <div class="poem-line">和田白玉篆君王，龟钮回纹印沧桑。</div>
+                <div class="poem-line">二十七日帝王梦，一玺千年证海昏。</div>
+              </div>
+              <div class="content-seal">
+                <div class="seal-box seal-jade"><span class="seal-text">玉印<br>千秋</span></div>
+                <span class="seal-quote">"龟钮玉篆，印证天机"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. 汉代漆器 -->
+        <div class="swiper-slide">
+          <div class="slide-image">
+            <img src="../assests/img/history/exhibit4.jpg" alt="漆器">
+          </div>
+          <div class="slide-content">
+            <div class="slide-content-inner">
+              <div class="content-header">
+                <span class="content-title">彩绘漆器 · 汉室风华</span>
+              </div>
+              <p class="content-desc">
+                海昏侯墓出土漆器数量逾千件，涵盖耳杯、漆盘、漆奁、漆屏风等十余类生活器物。
+                其纹饰以云气纹、几何纹、凤鸟纹为主，色彩以朱红、黑褐、金黄三色交织，
+                形成层次丰富的"云龙"意象。部分漆器底部朱书铭文，记载制作年代、工匠姓名及监造官员。
+              </p>
+              <div class="content-poem">
+                <div class="poem-line">朱红髹漆云龙纹，金线勾勒汉时春。</div>
+                <div class="poem-line">耳杯盛尽千年酒，犹见海昏富贵人。</div>
+              </div>
+              <div class="content-seal">
+                <div class="seal-box seal-lacquer"><span class="seal-text">朱髹<br>云气</span></div>
+                <span class="seal-quote">"朱漆含韵，云龙生辉"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. 马蹄金 -->
+        <div class="swiper-slide">
+          <div class="slide-image">
+            <img src="../assests/img/history/exhibit5.jpg" alt="马蹄金">
+          </div>
+          <div class="slide-content">
+            <div class="slide-content-inner">
+              <div class="content-header">
+                <span class="content-title">马蹄金 · 祥瑞之器</span>
+              </div>
+              <p class="content-desc">
+                马蹄金因形似骏马蹄部而得名，为汉代最高等级黄金货币之一。
+                海昏侯墓出土马蹄金共 48 枚，每枚底部刻有"上"字、"中"字或"下"字铭文，
+                表明其铸造批次与等级规制。马蹄金用于诸侯王进献、皇帝赏赐或大型祭祀活动，
+                具有极强的礼仪与政治象征意义。
+              </p>
+              <div class="content-poem">
+                <div class="poem-line">蹄踏祥云入汉宫，金映天阙显尊荣。</div>
+                <div class="poem-line">叠铸精工传千载，犹闻塞外马嘶风。</div>
+              </div>
+              <div class="content-seal">
+                <div class="seal-box seal-horse"><span class="seal-text">天马<br>衔金</span></div>
+                <span class="seal-quote">"蹄踏星河，金映汉庭"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 战国竹简 -->
+        <div class="swiper-slide">
+          <div class="slide-image">
+            <img src="../assests/img/history/exhibit6.jpg" alt="竹简">
+          </div>
+          <div class="slide-content">
+            <div class="slide-content-inner">
+              <div class="content-header">
+                <span class="content-title">战国竹简 · 典籍重现</span>
+              </div>
+              <p class="content-desc">
+                海昏侯墓出土竹简总数逾 5000 枚，墨书文字总数约 10 余万字，
+                内容涵盖《诗经》《论语》《易经》《礼记》《孝经》等十余种先秦典籍，
+                部分为失传已久的"古文经"版本。其中《论语》竹简中发现"智（知）道"篇，
+                与传世本《论语》存在重要差异，为儒学思想史研究提供了全新文本依据。
+              </p>
+              <div class="content-poem">
+                <div class="poem-line">竹简万言墨未干，论语春秋字字丹。</div>
+                <div class="poem-line">海昏一现惊天下，重现先贤百代观。</div>
+              </div>
+              <div class="content-seal">
+                <div class="seal-box seal-bamboo"><span class="seal-text">简牍<br>万言</span></div>
+                <span class="seal-quote">"简中春秋，墨香千年"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+ <!-- 4. 数据叙事：纯CSS国潮条形图 -->
+ <section class="chart-wrap" data-aos="fade-up">
+   <div class="section-title">📜 历代文人 · 咏南昌诗词数量</div>
+   
+   <!-- 纯CSS条形图 -->
+   <div class="chart-container">
+     <div class="bar-chart">
+       
+       <div class="bar-item" data-value="8">
+         <span class="bar-label">汉</span>
+         <div class="bar-track">
+           <div class="bar-fill" style="width: 19%;"></div>
+         </div>
+         <span class="bar-number">8</span>
+         <span class="bar-sub">张衡·王粲</span>
+       </div>
+       
+       <div class="bar-item" data-value="42">
+         <span class="bar-label">唐</span>
+         <div class="bar-track">
+           <div class="bar-fill" style="width: 100%;"></div>
+         </div>
+         <span class="bar-number">42</span>
+         <span class="bar-sub">王勃·李白·白居易</span>
+       </div>
+       
+       <div class="bar-item" data-value="26">
+         <span class="bar-label">宋</span>
+         <div class="bar-track">
+           <div class="bar-fill" style="width: 62%;"></div>
+         </div>
+         <span class="bar-number">26</span>
+         <span class="bar-sub">王安石·黄庭坚</span>
+       </div>
+       
+       <div class="bar-item" data-value="31">
+         <span class="bar-label">明</span>
+         <div class="bar-track">
+           <div class="bar-fill" style="width: 74%;"></div>
+         </div>
+         <span class="bar-number">31</span>
+         <span class="bar-sub">汤显祖·王阳明</span>
+       </div>
+       
+       <div class="bar-item" data-value="15">
+         <span class="bar-label">近代</span>
+         <div class="bar-track">
+           <div class="bar-fill" style="width: 36%;"></div>
+         </div>
+         <span class="bar-number">15</span>
+         <span class="bar-sub">陈独秀·郭沫若</span>
+       </div>
+       
+     </div>
+     <p class="chart-note">数据综合自《豫章诗话》及南昌历代方志，作品数量为约数，体现文化脉络。</p>
+   </div>
+ 
+   <!-- 表格（保持不变） -->
+   <div class="poetry-table-wrap" data-aos="fade-up" data-aos-delay="200">
+     <h4 class="table-title">📖 历代名家与南昌诗词</h4>
+     <table class="poetry-table">
+       <thead><tr><th>朝代</th><th>代表文人</th><th>作品数量</th><th>代表作</th></tr></thead>
+       <tbody>
+         <tr><td>汉</td><td>张衡、王粲</td><td>8</td><td>《南都赋》（提及豫章）</td></tr>
+         <tr><td>唐</td><td>王勃、李白、白居易</td><td>42</td><td>《滕王阁序》</td></tr>
+         <tr><td>宋</td><td>王安石、黄庭坚、杨万里</td><td>26</td><td>《登滕王阁》</td></tr>
+         <tr><td>明</td><td>汤显祖、王阳明</td><td>31</td><td>《滕王阁宴集》</td></tr>
+         <tr><td>近代</td><td>陈独秀、郭沫若</td><td>15</td><td>《八一纪念》</td></tr>
+       </tbody>
+     </table>
+   </div>
+ </section>
+
+  <!-- 5. 底部CTA -->
+  <section class="history-footer-cta" data-aos="zoom-in">
+    <div class="cta-bg"></div>
+    <div class="cta-content">
+      <h2>历史流向未来 · 等你续写</h2>
+      <div class="cta-buttons">
+        <a href="red-study.html" class="btn-red cta-btn">重走八一红色之路</a>
+        <a href="city-map.html" class="btn-gold cta-btn">打卡千年豫章地标</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 悬浮工具 ===== -->
+<div class="float-tools">
+  <button class="back-top-btn">↑</button>
+  <div class="share-wrap">
+    <button class="share-btn">分享</button>
+    <div class="share-popup"><p>分享本站</p><span class="copy-link">复制链接</span></div>
+  </div>
+  <button class="service-btn">文旅咨询</button>
+</div>
+
+<!-- ===== 底部页脚 ===== -->
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div class="footer-top">
+      <div class="footer-col"><h3>豫章风华</h3><p>豫章故郡，洪都新府。聚焦南昌千年历史、红色文化、非遗民俗、赣菜风光，线上南昌文化数字展馆。</p><div class="social-icons"><a href="#">微信</a><a href="#">小红书</a><a href="#">微博</a></div></div>
+      <div class="footer-col"><h3>文化探索</h3><ul><li><a href="history.html">千年豫章历史</a></li><li><a href="intangible.html">南昌非遗名录</a></li><li><a href="scenic.html">名胜古迹打卡</a></li><li><a href="poem-tengwang.html">滕王阁序赏析</a></li></ul></div>
+      <div class="footer-col"><h3>文旅服务</h3><ul><li><a href="food.html">赣菜美食攻略</a></li><li><a href="city-map.html">交互式打卡地图</a></li><li><a href="red-study.html">红色研学路线</a></li><li><a href="strategy.html">全域游玩指南</a></li></ul></div>
+      <div class="footer-col"><h3>关于我们</h3><ul><li><a href="about.html">网站介绍</a></li><li><a href="community.html">游客投稿社区</a></li><li><a href="feedback.html">意见留言反馈</a></li><li><a href="#">联系文旅官方</a></li></ul></div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom"><p>© 2026 豫章风华·南昌城市文化数字展馆 版权所有</p><p>赣ICP备XXXXXX号 | 无障碍浏览入口 | 网站地图</p></div>
+  </div>
+</footer>
+
+<script src="../assets/lib/aos/aos.js"></script>
+<script src="../assets/lib/swiper/swiper-bundle.min.js"></script>
+<script src="../assets/lib/chart.js/chart.umd.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/pages/history.js"></script>
+<script>AOS.init({ duration: 800, once: true, offset: 100 })</script>
+</body>
+</html>

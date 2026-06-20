@@ -1,0 +1,23 @@
+html.dark {
+  --color-cream: #1A1A20;
+  --text-dark: #EAEAEA;
+  --text-gray: #aaa;
+  --shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+html.dark body {
+  background-color: var(--color-cream);
+  color: var(--text-dark);
+}
+html.dark .site-header {
+  background: #2D2D36;
+}
+html.dark .card {
+  background: #2D2D36;
+}
+html.dark .mobile-drawer {
+  background: #2D2D36;
+}
+html.dark .search-popup,
+html.dark .share-popup {
+  background: #2D2D36;
+}

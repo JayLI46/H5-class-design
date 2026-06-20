@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>豫章风华 - 南昌城市文化</title>
+  <!-- 全局公共样式 -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <!-- 第三方库CSS -->
+  <link rel="stylesheet" href="assets/lib/aos/aos.css">
+  <!-- <link rel="stylesheet" href="assets/lib/swiper/swiper-bundle.min.css"> -->
+  <!-- 替换原来本地lib的swiper引入 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- 首页专属样式 -->
+  <link rel="stylesheet" href="css/index.css">
+  
+</head>
+<body>
+<!-- 头部导航 -->
+<header class="site-header">
+  <div class="container header-wrap">
+    <a href="index.html" class="header-logo">
+      <svg class="logo-icon" width="36" height="36" viewBox="0 0 100 100" fill="none">
+        <path d="M10 70 L50 20 L90 70 Z" stroke="#C41E3A" stroke-width="4" fill="none"/>
+        <rect x="30" y="70" width="40" height="25" fill="#D4AF37"/>
+      </svg>
+      <span class="logo-text">豫章风华 · 南昌城市文化</span>
+    </a>
+    <nav class="pc-nav">
+      <a href="index.html" class="nav-item active">首页</a>
+      <a href="pages/history.html" class="nav-item">千年历史</a>
+      <a href="pages/intangible.html" class="nav-item">赣鄱非遗</a>
+      <a href="pages/scenic.html" class="nav-item">城市地标</a>
+      <a href="pages/food.html" class="nav-item">赣味美食</a>
+      <a href="pages/youth-culture.html" class="nav-item">文创青年</a>
+    </nav>
+    <div class="header-tools">
+      <button class="search-btn">🔍</button>
+      <div class="search-popup">
+        <input type="text" placeholder="搜索景点/美食/非遗..." class="search-input">
+        <button class="search-submit">搜索</button>
+      </div>
+      <button class="theme-toggle" title="切换明暗主题">🌓</button>
+      <button class="mobile-menu-btn">☰</button>
+	  
+	  <!-- 新增：右上角音乐播放按钮 -->
+	    <button class="music-btn" id="musicBtn" title="播放背景音乐">
+	      <span class="music-icon">🎵</span>
+	    </button>
+	  </div>
+	  
+	  <!-- 新增：隐藏的音频播放器 -->
+	  <audio id="bgMusic" loop preload="auto">
+	    <!-- 把你的音乐文件放在 assets/music/ 目录下，替换文件名 -->
+	    <source src="./assests/music/乡间的路.mp3" type="audio/mp3">
+	  
+
+    </div>
+  </div>
+  <div class="mobile-drawer">
+    <button class="drawer-close">✕</button>
+    <nav class="mobile-nav">
+      <a href="index.html">首页</a>
+      <a href="pages/history.html">千年历史</a>
+      <a href="pages/intangible.html">赣鄱非遗</a>
+      <a href="pages/scenic.html">城市地标</a>
+      <a href="pages/food.html">赣味美食</a>
+      <a href="pages/youth-culture.html">文创青年</a>
+      <a href="pages/poem-tengwang.html">滕王阁序专题</a>
+      <a href="pages/city-map.html">打卡地图</a>
+      <a href="pages/feedback.html">留言反馈</a>
+    </nav>
+  </div>
+  <div class="drawer-mask"></div>
+</header>
+
+<!-- 页面主体 -->
+<main class="main-content">
+  <!-- 区块1：全屏视差Banner -->
+  <section class="banner-wrap">
+    <div class="banner-bg parallax-layer layer-1">
+      <img src="./assests/img/banner/美术馆.jpg" alt="南昌赣江滕王阁全景">
+    </div>
+    <div class="banner-decor parallax-layer layer-2">
+      <div class="lantern lantern-animate"></div>
+      <div class="wave float-animate"></div>
+    </div>
+    <div class="banner-text parallax-layer layer-3">
+      <h1 class="fade-text">豫章故郡，洪都新府</h1>
+      <p class="fade-text delay-1">英雄城南昌 · 千年赣鄱文化数字展馆</p>
+      <div class="banner-buttons fade-text delay-2">
+        <a href="#culture-four" class="btn-red">探索南昌文化</a>
+        <a href="#route-wrap" class="btn-gold">查看文旅路线</a>
+      </div>
+      <div class="scroll-tip float-animate">↓ 向下滑动探索更多</div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- 区块2：城市数据名片 -->
+    <section class="data-card-wrap" data-aos="fade-up">
+      <div class="section-title">一城赣韵，读懂南昌</div>
+      <div class="data-card-list">
+        <div class="card data-card">
+          <h3>2200+</h3>
+          <p>千年豫章古城</p>
+        </div>
+        <div class="card data-card">
+          <h3>11项</h3>
+          <p>国家级非遗瑰宝</p>
+        </div>
+        <div class="card data-card">
+          <h3>八一</h3>
+          <p>红色革命英雄城</p>
+        </div>
+        <div class="card data-card">
+          <h3>10+</h3>
+          <p>4A/5A文旅景区</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 区块3：四大文脉入口 -->
+    <section id="culture-four" class="four-culture-wrap" data-aos="fade-up">
+      <div class="section-title">千年文脉 · 四大文化篇章</div>
+      <div class="four-card-grid">
+        <a href="pages/history.html" class="card four-card">
+          <div class="card-img">
+            <img src="./assests/img/banner/滕王阁.jpg" alt="豫章历史">
+          </div>
+          <div class="card-text">
+            <h4>豫章历史</h4>
+            <p>海昏侯、滕王阁、红色革命</p>
+          </div>
+        </a>
+        <a href="pages/intangible.html" class="card four-card">
+          <div class="card-img">
+            <img src="./assests/img/banner/瓷板画.jpg" alt="赣鄱非遗">
+          </div>
+          <div class="card-text">
+            <h4>赣鄱非遗</h4>
+            <p>瓷板画、文港毛笔、赣剧</p>
+          </div>
+        </a>
+        <a href="pages/scenic.html" class="card four-card">
+          <div class="card-img">
+            <img src="./assests/img/banner/双子塔.jpg" alt="城市地标">
+          </div>
+          <div class="card-text">
+            <h4>城市地标</h4>
+            <p>古迹古建、赣江新城夜景</p>
+          </div>
+        </a>
+        <a href="pages/food.html" class="card four-card">
+          <div class="card-img">
+            <img src="./assests/img/banner/南昌拌粉.jpg" alt="赣味美食">
+          </div>
+          <div class="card-text">
+            <h4>赣味美食</h4>
+            <p>拌粉瓦罐汤、地道赣菜</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 区块4：3D立体CoverFlow轮播 -->
+    <section class="intangible-swiper-wrap" data-aos="fade-up">
+      <div class="section-title">指尖非遗，赣地匠心</div>
+      <div class="swiper intangible-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide card">
+            <div class="slide-img">
+              <img src="./assests/img/intangible/南昌瓷板画.jpg" alt="南昌瓷板画">
+            </div>
+            <div class="slide-desc">南昌瓷板画</div>
+          </div>
+          <div class="swiper-slide card">
+            <div class="slide-img">
+              <img src="./assests/img/intangible/进贤文港毛笔.jpg" alt="进贤文港毛笔">
+            </div>
+            <div class="slide-desc">进贤文港毛笔</div>
+          </div>
+          <div class="swiper-slide card">
+            <div class="slide-img">
+              <img src="./assests/img/intangible/安义木雕.jpg" alt="安义木雕">
+            </div>
+            <div class="slide-desc">安义木雕</div>
+          </div>
+          <div class="swiper-slide card">
+            <div class="slide-img">
+              <img src="./assests/img/intangible/西山万寿宫庙会.jpg" alt="西山万寿宫庙会">
+            </div>
+            <div class="slide-desc">西山万寿宫庙会</div>
+          </div>
+          <div class="swiper-slide card">
+            <div class="slide-img">
+              <img src="./assests/img/intangible/赣剧.jpg" alt="赣剧">
+            </div>
+            <div class="slide-desc">赣剧</div>
+          </div>
+          <div class="swiper-slide card">
+            <div class="slide-img">
+              <img src="./assests/img/intangible/南昌采茶戏.jpg" alt="南昌采茶戏">
+            </div>
+            <div class="slide-desc">南昌采茶戏</div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- 区块5：城市地标展区 -->
+    <section class="scenic-wrap" data-aos="fade-up">
+      <div class="section-title">古今地标风光</div>
+      <div class="tab-group">
+        <span class="tab-item active" data-type="ancient">古迹名胜</span>
+        <span class="tab-item" data-type="newcity">现代新城</span>
+      </div>
+      <div class="scenic-grid ancient-list">
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="./assests/img/scenic/滕王阁.jpg" alt="滕王阁">
+          </div>
+          <p>滕王阁</p>
+        </div>
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="./assests/img/scenic/绳金塔.jpg" alt="绳金塔">
+          </div>
+          <p>绳金塔</p>
+        </div>
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="./assests/img/scenic/万寿宫.jpg" alt="万寿宫">
+          </div>
+          <p>万寿宫</p>
+        </div>
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="./assests/img/scenic/海昏侯遗址.jpg" alt="海昏侯遗址">
+          </div>
+          <p>海昏侯遗址</p>
+        </div>
+      </div>
+      <div class="scenic-grid newcity-list" style="display:none">
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="assests/img/banner/双子塔.jpg" alt="赣江双子塔">
+          </div>
+          <p>赣江双子塔</p>
+        </div>
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="./assests/img/scenic/艾溪湖.jpg" alt="艾溪湖">
+          </div>
+          <p>艾溪湖</p>
+        </div>
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="./assests/img/scenic/瑶湖.png" alt="瑶湖">
+          </div>
+          <p>瑶湖</p>
+        </div>
+        <div class="card scenic-card">
+          <div class="scenic-img">
+            <img src="./assests/img/scenic/融创茂.jpg" alt="融创茂">
+          </div>
+          <p>融创茂</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 区块6：赣味美食 -->
+    <section class="food-wrap" data-aos="fade-up">
+      <div class="section-title">赣味人间，南昌烟火</div>
+      <div class="food-grid">
+        <div class="card food-card">
+          <div class="food-img">
+            <img src="./assests/img/tampel.png" alt="南昌拌粉">
+          </div>
+          <h4>南昌拌粉</h4>
+        </div>
+        <div class="card food-card">
+          <div class="food-img">
+            <img src="./assests/img/tampel.png" alt="瓦罐汤">
+          </div>
+          <h4>瓦罐汤</h4>
+        </div>
+        <div class="card food-card">
+          <div class="food-img">
+            <img src="./assests/img/tampel.png" alt="藜蒿炒腊肉">
+          </div>
+          <h4>藜蒿炒腊肉</h4>
+        </div>
+        <div class="card food-card">
+          <div class="food-img">
+            <img src="./assests/img/tampel.png" alt="白糖糕">
+          </div>
+          <h4>白糖糕</h4>
+        </div>
+        <div class="card food-card">
+          <div class="food-img">
+            <img src="./assests/img/tampel.png" alt="糊羹">
+          </div>
+          <h4>糊羹</h4>
+        </div>
+      </div>
+      <div class="more-link-box">
+        <a href="pages/food.html" class="btn-gold">查看完整美食攻略</a>
+      </div>
+    </section>
+
+    
+    <!-- 区块8：游玩路线 -->
+    <section id="route-wrap" class="route-wrap" data-aos="fade-up">
+      <div class="section-title">南昌游玩精选路线</div>
+      <div class="route-list">
+        <div class="card route-card">
+          <h4>一日古风线</h4>
+          <p>滕王阁 + 万寿宫 + 绳金塔，感受千年古豫章韵味</p>
+        </div>
+        <div class="card route-card">
+          <h4>两日红色研学线</h4>
+          <p>八一起义纪念馆、海昏侯国遗址，红色历史研学</p>
+        </div>
+        <div class="card route-card">
+          <h4>美食休闲线</h4>
+          <p>蛤蟆街小吃、艾溪湖日落夜景，休闲放松打卡</p>
+        </div>
+      </div>
+      <div class="more-link-box">
+        <a href="pages/strategy.html" class="btn-gold">查看完整全域攻略</a>
+      </div>
+    </section>
+
+    <!-- 区块9：游客投稿 -->
+    <section class="community-wrap" data-aos="fade-up">
+      <div class="section-title">镜头下的南昌 · 游客投稿</div>
+      <div class="img-waterfall">
+        <div class="waterfall-item card">
+          <img src="assets/images/community/shot1.jpg" alt="游客实拍1">
+        </div>
+        <div class="waterfall-item card">
+          <img src="assets/images/community/shot2.jpg" alt="游客实拍2">
+        </div>
+        <div class="waterfall-item card">
+          <img src="assets/images/community/shot3.jpg" alt="游客实拍3">
+        </div>
+        <div class="waterfall-item card">
+          <img src="assets/images/community/shot4.jpg" alt="游客实拍4">
+        </div>
+        <div class="waterfall-item card">
+          <img src="assets/images/community/shot5.jpg" alt="游客实拍5">
+        </div>
+      </div>
+      <div class="more-link-box">
+        <a href="pages/community.html" class="btn-red">前往投稿社区分享游记</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- 全局悬浮工具 -->
+<div class="float-tools">
+  <button class="back-top-btn">↑</button>
+  <div class="share-wrap">
+    <button class="share-btn">分享</button>
+    <div class="share-popup">
+      <p>分享本站</p>
+      <span class="copy-link">复制链接</span>
+    </div>
+  </div>
+  <button class="service-btn">文旅咨询</button>
+</div>
+
+<!-- 底部页脚 -->
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h3>豫章风华</h3>
+        <p>豫章故郡，洪都新府。聚焦南昌千年历史、红色文化、非遗民俗、赣菜风光，线上南昌文化数字展馆。</p>
+        <div class="social-icons">
+          <a href="#">微信</a>
+          <a href="#">小红书</a>
+          <a href="#">微博</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>文化探索</h3>
+        <ul>
+          <li><a href="pages/history.html">千年豫章历史</a></li>
+          <li><a href="pages/intangible.html">南昌非遗名录</a></li>
+          <li><a href="pages/scenic.html">名胜古迹打卡</a></li>
+          <li><a href="pages/poem-tengwang.html">滕王阁序赏析</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>文旅服务</h3>
+        <ul>
+          <li><a href="pages/food.html">赣菜美食攻略</a></li>
+          <li><a href="pages/city-map.html">交互式打卡地图</a></li>
+          <li><a href="pages/red-study.html">红色研学路线</a></li>
+          <li><a href="pages/strategy.html">全域游玩指南</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>关于我们</h3>
+        <ul>
+          <li><a href="pages/about.html">网站介绍</a></li>
+          <li><a href="pages/community.html">游客投稿社区</a></li>
+          <li><a href="pages/feedback.html">意见留言反馈</a></li>
+          <li><a href="#">联系文旅官方</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p>© 2026 豫章风华·南昌城市文化数字展馆 版权所有</p>
+      <p>赣ICP备XXXXXX号 | 无障碍浏览入口 | 网站地图</p>
+    </div>
+  </div>
+</footer>
+
+<!-- 第三方JS -->
+<script src="assets/lib/aos/aos.js"></script>
+<script src="assets/lib/swiper/swiper-bundle.min.js"></script>
+<script src="assets/lib/chart.js/chart.umd.js"></script>
+<!-- 全局公共JS -->
+<script src="js/common.js"></script>
+<!-- 首页专属交互 -->
+<script src="js/index.js"></script>
+<!-- AOS初始化 -->
+<script>
+AOS.init({
+  duration: 800,
+  once: true,
+  offset: 100
+})
+</script>
+</body>
+</html>

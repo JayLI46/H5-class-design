@@ -1,0 +1,1240 @@
+/* ============================================================
+   1. 首屏英雄区
+   ============================================================ */
+.history-hero {
+  height: 60vh;
+  min-height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at center, #3a2a1a 0%, #1a1410 100%);
+  overflow: hidden;
+}
+
+.hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: '华文楷体', 'KaiTi', 'chinese-bold.ttf', serif;
+  font-size: clamp(72px, 15vw, 160px);
+  color: #D4AF37;
+  text-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+  letter-spacing: 30px;
+  margin-bottom: 10px;
+  animation: heroGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+  0% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.2); }
+  100% { text-shadow: 0 0 80px rgba(212, 175, 55, 0.5); }
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 24px);
+  color: #b8a68b;
+  letter-spacing: 8px;
+  margin-bottom: 30px;
+}
+
+.hero-seal {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  border: 3px solid #C41E3A;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C41E3A;
+  font-size: 20px;
+  font-weight: bold;
+  transform: rotate(10deg);
+  animation: sealRotate 20s linear infinite;
+}
+
+@keyframes sealRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  letter-spacing: 4px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   2. 四朝屏风手风琴
+   ============================================================ */
+.dynasty-accordion-wrap {
+  padding: 60px 4% 80px;
+  background: var(--color-cream);
+  transition: background 0.8s ease;
+}
+html.dark .dynasty-accordion-wrap {
+  background: #1A1A20;
+}
+
+.dynasty-accordion {
+  display: flex;
+  height: 520px;
+  gap: 14px;
+  max-width: 1400px;
+  margin: 0 auto;
+  perspective: 1200px;
+}
+
+.dynasty-panel {
+  flex: 1;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dynasty-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 1;
+  transition: background 0.6s ease;
+}
+
+.dynasty-panel.active {
+  flex: 3;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+}
+.dynasty-panel.active::before {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* 正面（折叠时） */
+.panel-front {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: opacity 0.5s ease;
+}
+.dynasty-panel.active .panel-front {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dynasty-name {
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 900;
+  font-family: '华文楷体', 'KaiTi', serif;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  color: #D4AF37;
+}
+
+.dynasty-sub {
+  font-size: clamp(14px, 1.2vw, 20px);
+  letter-spacing: 6px;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dynasty-year {
+  font-size: 14px;
+  margin-top: 8px;
+  padding: 4px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 背面（展开时） */
+.panel-back {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  padding: 30px 40px;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.15s;
+  pointer-events: none;
+}
+.dynasty-panel.active .panel-back {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-inner {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.panel-img {
+  flex: 0 0 45%;
+  height: 80%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+.panel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.dynasty-panel.active .panel-img img {
+  transform: scale(1.02);
+}
+
+.panel-text {
+  flex: 1;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.panel-text h3 {
+  font-size: clamp(22px, 2.2vw, 34px);
+  color: #D4AF37;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.panel-text p {
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 20px;
+}
+
+.btn-explore {
+  padding: 10px 28px;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1.5px solid #D4AF37;
+  border-radius: 30px;
+  color: #D4AF37;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-explore:hover {
+  background: #D4AF37;
+  color: #1a1410;
+  transform: translateX(6px);
+}
+
+/* ============================================================
+   3. 海昏侯展柜（核心：左右分栏，图片与内容分离）
+   ============================================================ */
+.exhibition-wrap {
+  padding: 60px 4% 80px;
+  background: #0d0b0a;
+}
+.exhibition-wrap .section-title {
+  color: #D4AF37;
+}
+
+.exhibition-swiper {
+  padding: 30px 0 60px;
+  overflow: visible !important;
+}
+
+/* slide 卡片：左右 Flex 布局 */
+.exhibition-swiper .swiper-slide {
+  display: flex;
+  width: 86%;
+  max-width: 960px;
+  height: 400px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  transition: border-color 0.3s ease;
+  background: #0d0b0a;
+}
+.exhibition-swiper .swiper-slide-active {
+  border-color: #D4AF37;
+}
+
+/* 左侧：图片（占 50%） */
+.slide-image {
+  flex: 0 0 50%;
+  height: 100%;
+  overflow: hidden;
+}
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 右侧：内容区（占 50%） */
+.slide-content {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #0d0b0a 0%, #1a1410 100%);
+  overflow: hidden;
+}
+
+.slide-content-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+/* 标题 */
+.content-title {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #D4AF37;
+  letter-spacing: 3px;
+  margin-bottom: 2px;
+}
+
+/* 描述文字 */
+.content-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  text-align: justify;
+  letter-spacing: 0.3px;
+  max-height: 100px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.content-desc::-webkit-scrollbar {
+  width: 3px;
+}
+.content-desc::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+
+/* 诗词区 */
+.content-poem {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 8px 0 4px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.poem-line {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
+  text-align: center;
+  letter-spacing: 4px;
+  font-family: '华文楷体', 'KaiTi', 'chinese-bold.ttf', serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+/* 印章 + 摘句 */
+.content-seal {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.seal-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-6deg);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+  border: 2px solid;
+  flex-shrink: 0;
+}
+.seal-text {
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: '华文楷体', 'KaiTi', 'chinese-bold.ttf', serif;
+}
+
+.seal-quote {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.50);
+  letter-spacing: 2px;
+  text-align: center;
+  font-family: '华文楷体', 'KaiTi', serif;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* 印章配色 */
+.seal-gold { background: #1a1410; border-color: #D4AF37; }
+.seal-gold .seal-text { color: #D4AF37; }
+.seal-bronze { background: #1a1410; border-color: #b8860b; }
+.seal-bronze .seal-text { color: #b8860b; }
+.seal-jade { background: #1a1a1a; border-color: #8fc9c9; }
+.seal-jade .seal-text { color: #8fc9c9; }
+.seal-lacquer { background: #1a0a0a; border-color: #b22222; }
+.seal-lacquer .seal-text { color: #b22222; }
+.seal-horse { background: #1a1410; border-color: #D4AF37; }
+.seal-horse .seal-text { color: #D4AF37; }
+.seal-bamboo { background: #1a1a0a; border-color: #8fbc8f; }
+.seal-bamboo .seal-text { color: #8fbc8f; }
+
+/* ============================================================
+   4. 图表区（纯 CSS 条形图 + 国潮表格）
+   ============================================================ */
+.chart-wrap {
+  padding: 60px 4% 80px;
+  background: var(--color-cream);
+}
+html.dark .chart-wrap {
+  background: #1A1A20;
+}
+
+/* ---------- 条形图容器 ---------- */
+.chart-container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 35px 40px 30px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(212, 175, 55, 0.04) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 装饰暗纹 */
+.chart-container::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ---------- 纯 CSS 条形图 ---------- */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 0 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 0;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.04);
+}
+.bar-item:last-child {
+  border-bottom: none;
+}
+
+/* 朝代标签 */
+.bar-label {
+  flex: 0 0 48px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #C41E3A;
+  font-family: '华文楷体', 'KaiTi', serif;
+  letter-spacing: 2px;
+  text-align: right;
+  padding-right: 6px;
+}
+html.dark .bar-label {
+  color: #e8555a;
+}
+
+/* 条形轨道 */
+.bar-track {
+  flex: 1;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+html.dark .bar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* 条形填充：红金渐变 */
+.bar-fill {
+  height: 100%;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #C41E3A 0%, #D4AF37 100%);
+  position: relative;
+  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  min-width: 4px;
+}
+
+/* 光泽感 */
+.bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  border-radius: 14px 14px 0 0;
+}
+
+/* 数量数字 */
+.bar-number {
+  flex: 0 0 32px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #D4AF37;
+  text-align: center;
+  font-family: '华文楷体', 'KaiTi', serif;
+}
+
+/* 代表文人子标签 */
+.bar-sub {
+  flex: 0 0 140px;
+  font-size: 12px;
+  color: var(--text-gray);
+  letter-spacing: 1px;
+  font-family: '华文楷体', 'KaiTi', serif;
+  opacity: 0.8;
+  text-align: left;
+  padding-left: 4px;
+}
+html.dark .bar-sub {
+  color: #999;
+}
+
+/* hover 效果 */
+.bar-item:hover .bar-fill {
+  filter: brightness(1.1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+.bar-item:hover .bar-number {
+  transform: scale(1.15);
+  color: #C41E3A;
+}
+
+/* ---------- 国潮风格表格 ---------- */
+.poetry-table-wrap {
+  max-width: 920px;
+  margin: 40px auto 0;
+  padding: 28px 24px 24px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(212, 175, 55, 0.05) 100%);
+  border-radius: 16px;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 云纹暗纹装饰 */
+.poetry-table-wrap::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.poetry-table-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(196, 30, 58, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.table-title {
+  text-align: center;
+  font-size: 22px;
+  color: #D4AF37;
+  margin-bottom: 20px;
+  letter-spacing: 6px;
+  font-family: '华文楷体', 'KaiTi', 'chinese-bold.ttf', serif;
+  position: relative;
+  display: inline-block;
+  padding: 0 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.table-title::before,
+.table-title::after {
+  content: '◆';
+  color: #C41E3A;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.table-title::before { left: 0; }
+.table-title::after { right: 0; }
+
+.poetry-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  text-align: center;
+  color: var(--text-dark);
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+html.dark .poetry-table {
+  color: #eaeaea;
+}
+
+/* 表头：金色渐变 */
+.poetry-table thead {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.08) 100%);
+  border-bottom: 2px solid #D4AF37;
+}
+.poetry-table thead tr th {
+  color: #D4AF37;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 3px;
+  padding: 14px 12px;
+  font-family: '华文楷体', 'KaiTi', serif;
+  position: relative;
+}
+.poetry-table thead tr th::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+}
+
+/* 表格行 */
+.poetry-table tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+}
+.poetry-table tbody tr:last-child {
+  border-bottom: none;
+}
+.poetry-table tbody tr:nth-child(even) {
+  background: rgba(212, 175, 55, 0.03);
+}
+.poetry-table tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* hover 红金质感 */
+.poetry-table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(196, 30, 58, 0.08) 0%, rgba(212, 175, 55, 0.08) 100%);
+  transform: scale(1.005);
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.1);
+}
+
+.poetry-table th,
+.poetry-table td {
+  padding: 13px 10px;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+/* 朝代列：朱红印章风格 */
+.poetry-table tbody td:first-child {
+  font-weight: 900;
+  color: #C41E3A;
+  font-size: 18px;
+  font-family: '华文楷体', 'KaiTi', serif;
+  letter-spacing: 2px;
+  position: relative;
+}
+html.dark .poetry-table tbody td:first-child {
+  color: #e8555a;
+}
+
+/* 代表文人列 */
+.poetry-table tbody td:nth-child(2) {
+  font-weight: 500;
+  color: var(--text-dark);
+  letter-spacing: 1px;
+}
+html.dark .poetry-table tbody td:nth-child(2) {
+  color: #ccc;
+}
+
+/* 作品数量列：金色圆点装饰 */
+.poetry-table tbody td:nth-child(3) {
+  font-weight: 700;
+  font-size: 18px;
+  color: #D4AF37;
+  font-family: '华文楷体', 'KaiTi', serif;
+}
+.poetry-table tbody td:nth-child(3)::before {
+  content: '● ';
+  color: #D4AF37;
+  font-size: 12px;
+}
+
+/* 代表作列 */
+.poetry-table tbody td:nth-child(4) {
+  font-family: '华文楷体', 'KaiTi', serif;
+  color: var(--text-gray);
+  font-style: italic;
+  letter-spacing: 1px;
+}
+html.dark .poetry-table tbody td:nth-child(4) {
+  color: #aaa;
+}
+
+/* 图表注释 */
+.chart-note {
+  text-align: center;
+  margin-top: 18px;
+  color: var(--text-gray);
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-family: '华文楷体', 'KaiTi', serif;
+  opacity: 0.7;
+  position: relative;
+  z-index: 1;
+  padding-top: 10px;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* 暗色模式表格适配 */
+html.dark .poetry-table-wrap {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.02) 0%, rgba(212, 175, 55, 0.04) 100%);
+  border-color: rgba(212, 175, 55, 0.15);
+}
+html.dark .poetry-table thead {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+}
+html.dark .poetry-table tbody tr:nth-child(even) {
+  background: rgba(212, 175, 55, 0.04);
+}
+html.dark .poetry-table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(196, 30, 58, 0.12) 0%, rgba(212, 175, 55, 0.12) 100%);
+}
+
+/* ============================================================
+   5. 底部 CTA
+   ============================================================ */
+.history-footer-cta {
+  position: relative;
+  padding: 80px 4%;
+  background: radial-gradient(ellipse at center, #2c1810 0%, #0d0b0a 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assests/img/history/nanchang-skyline.svg');
+  background-size: cover;
+  background-position: center bottom;
+  opacity: 0.08;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+.cta-content h2 {
+  font-size: clamp(28px, 3.5vw, 48px);
+  color: #D4AF37;
+  font-family: '华文楷体', 'KaiTi', serif;
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 14px 40px !important;
+  font-size: 18px !important;
+  border-radius: 50px !important;
+  letter-spacing: 2px;
+}
+.cta-btn.btn-red {
+  background: #C41E3A;
+  color: #fff;
+  border: none;
+}
+.cta-btn.btn-red:hover {
+  background: #a01830;
+  transform: translateY(-4px);
+}
+.cta-btn.btn-gold {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+.cta-btn.btn-gold:hover {
+  background: #D4AF37;
+  color: #0d0b0a;
+}
+
+/* ============================================================
+   6. 响应式适配
+   ============================================================ */
+
+/* ---------- 平板 ---------- */
+@media (max-width: 992px) {
+  /* 屏风 */
+  .dynasty-accordion {
+    height: 460px;
+    gap: 10px;
+  }
+  .panel-back {
+    padding: 20px;
+  }
+  .panel-inner {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .panel-img {
+    flex: 0 0 50%;
+    width: 100%;
+    height: 50%;
+  }
+  .panel-text h3 {
+    font-size: 18px;
+  }
+  .panel-text p {
+    font-size: 13px;
+  }
+
+  /* 展柜 */
+  .exhibition-swiper .swiper-slide {
+    height: 360px;
+    width: 90%;
+  }
+  .slide-content {
+    padding: 18px 20px;
+  }
+  .content-title {
+    font-size: 17px;
+  }
+  .content-desc {
+    font-size: 12px;
+    max-height: 80px;
+  }
+  .poem-line {
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+  .seal-box {
+    width: 40px;
+    height: 40px;
+  }
+  .seal-text {
+    font-size: 9px;
+  }
+  .seal-quote {
+    font-size: 11px;
+  }
+
+  /* 条形图 */
+  .chart-container {
+    padding: 24px 24px 20px;
+  }
+  .bar-label {
+    flex: 0 0 40px;
+    font-size: 16px;
+  }
+  .bar-track {
+    height: 24px;
+  }
+  .bar-number {
+    font-size: 16px;
+    flex: 0 0 28px;
+  }
+  .bar-sub {
+    flex: 0 0 100px;
+    font-size: 11px;
+  }
+
+  /* 表格 */
+  .poetry-table {
+    font-size: 13px;
+  }
+  .poetry-table th,
+  .poetry-table td {
+    padding: 10px 6px;
+  }
+}
+
+/* ---------- 手机 ---------- */
+@media (max-width: 768px) {
+  /* 屏风 */
+  .dynasty-accordion {
+    height: 400px;
+    gap: 8px;
+  }
+  .dynasty-panel.active {
+    flex: 2.5;
+  }
+  .panel-front .dynasty-name {
+    font-size: 32px;
+  }
+  .panel-front .dynasty-sub {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+  .panel-back {
+    padding: 12px;
+  }
+  .panel-img {
+    flex: 0 0 40%;
+    height: 40%;
+  }
+  .panel-text p {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .btn-explore {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+
+  /* 展柜：改为上下布局 */
+  .exhibition-swiper .swiper-slide {
+    flex-direction: column;
+    height: auto;
+    min-height: 480px;
+    width: 92%;
+  }
+  .slide-image {
+    flex: 0 0 220px;
+    height: 220px;
+  }
+  .slide-content {
+    padding: 16px 18px 14px;
+    background: linear-gradient(180deg, #0d0b0a 0%, #1a1410 100%);
+  }
+  .slide-content-inner {
+    gap: 4px;
+  }
+  .content-title {
+    font-size: 16px;
+  }
+  .content-desc {
+    font-size: 11.5px;
+    max-height: 70px;
+  }
+  .poem-line {
+    font-size: 14px;
+    letter-spacing: 2px;
+    white-space: normal;
+  }
+  .content-seal {
+    gap: 10px;
+    padding-top: 4px;
+  }
+  .seal-box {
+    width: 36px;
+    height: 36px;
+  }
+  .seal-text {
+    font-size: 8px;
+  }
+  .seal-quote {
+    font-size: 10px;
+  }
+
+  /* 条形图 */
+  .chart-container {
+    padding: 20px 16px 18px;
+  }
+  .bar-chart {
+    gap: 10px;
+  }
+  .bar-item {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .bar-label {
+    flex: 0 0 36px;
+    font-size: 15px;
+  }
+  .bar-track {
+    height: 22px;
+    flex: 1 1 100%;
+    order: 3;
+  }
+  .bar-number {
+    flex: 0 0 28px;
+    font-size: 16px;
+  }
+  .bar-sub {
+    flex: 0 0 auto;
+    font-size: 11px;
+    order: 4;
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  /* 表格 */
+  .poetry-table-wrap {
+    padding: 16px 8px 12px;
+    margin: 24px 0 0;
+    border-radius: 12px;
+  }
+  .table-title {
+    font-size: 17px;
+    letter-spacing: 3px;
+    padding: 0 20px;
+  }
+  .table-title::before,
+  .table-title::after {
+    font-size: 10px;
+  }
+  .poetry-table {
+    font-size: 12px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .poetry-table thead tr th {
+    font-size: 13px;
+    padding: 10px 6px;
+    letter-spacing: 1px;
+  }
+  .poetry-table th,
+  .poetry-table td {
+    padding: 10px 6px;
+    font-size: 12px;
+  }
+  .poetry-table tbody td:first-child {
+    font-size: 14px;
+  }
+  .poetry-table tbody td:nth-child(3) {
+    font-size: 15px;
+  }
+  .poetry-table tbody td:nth-child(3)::before {
+    content: '• ';
+  }
+  .chart-note {
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding-top: 8px;
+  }
+
+  /* CTA */
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-btn {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+/* ---------- 小屏手机 ---------- */
+@media (max-width: 480px) {
+  /* 屏风 */
+  .dynasty-accordion {
+    height: 340px;
+    gap: 5px;
+  }
+  .dynasty-panel.active {
+    flex: 2;
+  }
+  .panel-front .dynasty-name {
+    font-size: 24px;
+  }
+  .panel-front .dynasty-year {
+    font-size: 10px;
+    padding: 2px 10px;
+  }
+  .panel-back {
+    padding: 8px;
+  }
+  .panel-img {
+    flex: 0 0 35%;
+    height: 35%;
+  }
+  .panel-text h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .panel-text p {
+    font-size: 10px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .btn-explore {
+    padding: 4px 12px;
+    font-size: 10px;
+  }
+
+  /* 展柜 */
+  .exhibition-swiper .swiper-slide {
+    min-height: 400px;
+    width: 94%;
+  }
+  .slide-image {
+    flex: 0 0 160px;
+    height: 160px;
+  }
+  .slide-content {
+    padding: 12px 14px 10px;
+  }
+  .content-title {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .content-desc {
+    font-size: 10px;
+    line-height: 1.4;
+    max-height: 60px;
+  }
+  .poem-line {
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
+  .content-seal {
+    gap: 6px;
+  }
+  .seal-box {
+    width: 30px;
+    height: 30px;
+  }
+  .seal-text {
+    font-size: 7px;
+  }
+  .seal-quote {
+    font-size: 9px;
+  }
+
+  /* 条形图 */
+  .chart-container {
+    padding: 14px 10px 14px;
+  }
+  .bar-chart {
+    gap: 8px;
+  }
+  .bar-label {
+    flex: 0 0 30px;
+    font-size: 13px;
+  }
+  .bar-track {
+    height: 18px;
+  }
+  .bar-number {
+    flex: 0 0 24px;
+    font-size: 14px;
+  }
+  .bar-sub {
+    font-size: 10px;
+  }
+
+  /* 表格 */
+  .poetry-table-wrap {
+    padding: 12px 4px 10px;
+  }
+  .table-title {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 0 16px;
+  }
+  .poetry-table {
+    font-size: 11px;
+  }
+  .poetry-table thead tr th {
+    font-size: 11px;
+    padding: 8px 4px;
+  }
+  .poetry-table th,
+  .poetry-table td {
+    padding: 8px 4px;
+    font-size: 11px;
+  }
+  .poetry-table tbody td:first-child {
+    font-size: 12px;
+  }
+  .poetry-table tbody td:nth-child(3) {
+    font-size: 13px;
+  }
+  .chart-note {
+    font-size: 10px;
+  }
+
+  /* CTA */
+  .cta-btn {
+    font-size: 14px !important;
+    padding: 10px 24px !important;
+    width: 90%;
+  }
+  .cta-content h2 {
+    font-size: 22px;
+    letter-spacing: 3px;
+  }
+}

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>匠心·传世 | 赣鄱非遗 | 豫章风华</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/lib/aos/aos.css">
+  <link rel="stylesheet" href="../css/pages/intangible.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-wrap">
+    <a href="../index.html" class="header-logo">
+      <svg class="logo-icon" width="36" height="36" viewBox="0 0 100 100" fill="none">
+        <path d="M10 70 L50 20 L90 70 Z" stroke="#C41E3A" stroke-width="4" fill="none"/>
+        <rect x="30" y="70" width="40" height="25" fill="#D4AF37"/>
+      </svg>
+      <span class="logo-text">豫章风华 · 南昌城市文化</span>
+    </a>
+    <nav class="pc-nav">
+      <a href="../index.html" class="nav-item">首页</a>
+      <a href="history.html" class="nav-item">千年历史</a>
+      <a href="intangible.html" class="nav-item active">赣鄱非遗</a>
+      <a href="scenic.html" class="nav-item">城市地标</a>
+      <a href="food.html" class="nav-item">赣味美食</a>
+      <a href="youth-culture.html" class="nav-item">文创青年</a>
+    </nav>
+    <div class="header-tools">
+      <button class="search-btn">🔍</button>
+      <div class="search-popup">
+        <input type="text" placeholder="搜索景点/美食/非遗..." class="search-input">
+        <button class="search-submit">搜索</button>
+      </div>
+      <button class="theme-toggle" title="切换明暗主题">🌓</button>
+      <button class="mobile-menu-btn">☰</button>
+      <button class="music-btn" id="musicBtn" title="播放背景音乐">
+        <span class="music-icon">🎵</span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-drawer">
+    <button class="drawer-close">✕</button>
+    <nav class="mobile-nav">
+      <a href="../index.html">首页</a>
+      <a href="history.html">千年历史</a>
+      <a href="intangible.html">赣鄱非遗</a>
+      <a href="scenic.html">城市地标</a>
+      <a href="food.html">赣味美食</a>
+      <a href="youth-culture.html">文创青年</a>
+      <a href="poem-tengwang.html">滕王阁序专题</a>
+      <a href="city-map.html">打卡地图</a>
+      <a href="feedback.html">留言反馈</a>
+    </nav>
+  </div>
+  <div class="drawer-mask"></div>
+</header>
+
+<main class="main-content">
+
+  <!-- 1. 首屏：墨舞开场 -->
+  <section class="intangible-hero">
+    <canvas id="inkCanvas" class="ink-canvas"></canvas>
+    <div class="hero-ink-wrap">
+      <div class="hero-char" data-char="赣">赣</div>
+      <div class="hero-char" data-char="鄱">鄱</div>
+      <div class="hero-char" data-char="非">非</div>
+      <div class="hero-char" data-char="遗">遗</div>
+    </div>
+    <p class="hero-subtitle">一方水土 · 百代匠心</p>
+    <p class="hero-desc">南昌国家级 / 省级非遗名录 · 活态传承</p>
+    <div class="hero-scroll-tip">↓ 向下滑动 · 走进非遗工坊</div>
+    <svg class="hero-ink-splash" viewBox="0 0 200 100" preserveAspectRatio="none">
+      <path d="M10,50 Q40,10 70,40 Q100,70 130,30 Q160,-10 190,20 Q195,40 180,60 Q150,90 100,70 Q50,50 10,50 Z" fill="rgba(196,30,58,0.06)"/>
+    </svg>
+  </section>
+
+  <!-- 2. 核心区：非遗工坊 -->
+  <section class="workshop-wrap">
+    <div class="workshop-intro" data-aos="fade-up">
+      <h2 class="workshop-title">🧵 非遗工坊 · 匠心传世</h2>
+      <p class="workshop-sub">每一项非遗，都是一卷等待展开的匠心故事</p>
+    </div>
+
+    <div class="scroll-axis">
+      <div class="axis-line"></div>
+
+      <!-- 非遗1：南昌瓷板画（奇数：标签在左，内容在右） -->
+      <div class="scroll-node scroll-node-left" data-aos="fade-up" data-aos-offset="200">
+        <div class="node-bead"><span class="bead-icon">🎨</span></div>
+        <div class="node-tags">
+          <span class="tag-item">釉上彩绘</span>
+          <span class="tag-item">🔥 1200°C烧制</span>
+          <span class="tag-item">瓷上丹青</span>
+          <span class="tag-item">百年传承</span>
+          <span class="tag-item">肖像画</span>
+        </div>
+        <div class="node-content">
+          <div class="scroll-header">
+            <h3 class="scroll-title">南昌瓷板画</h3>
+            <span class="scroll-tag">国家级非遗</span>
+            <span class="scroll-seal">绘</span>
+          </div>
+          <div class="scroll-body">
+            <div class="scroll-image">
+              <img src="../assests/img/intangible/南昌瓷板画.jpg" alt="南昌瓷板画">
+            </div>
+            <div class="scroll-text">
+              <p class="scroll-desc">以瓷为纸，以颜料为墨，经高温烧制而成。瓷板画融合绘画与陶瓷工艺，色彩经久不褪，被誉为"瓷上丹青"。南昌瓷板画自清末传承至今，已逾百年，是江西最具代表性的民间美术之一。</p>
+              <div class="scroll-meta">
+                <span class="meta-item">👤 传承人：冯杰（国家级）</span>
+                <span class="meta-item">📜 技艺：釉上彩绘</span>
+              </div>
+              <button class="btn-workshop" data-index="0">探访工坊 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 非遗2：进贤文港毛笔（偶数：内容在左，标签在右） -->
+      <div class="scroll-node scroll-node-right" data-aos="fade-up" data-aos-offset="200">
+        <div class="node-bead"><span class="bead-icon">🖌️</span></div>
+        <div class="node-content">
+          <div class="scroll-header">
+            <h3 class="scroll-title">进贤文港毛笔</h3>
+            <span class="scroll-tag">国家级非遗</span>
+            <span class="scroll-seal seal-green">制</span>
+          </div>
+          <div class="scroll-body">
+            <div class="scroll-image">
+              <img src="../assests/img/intangible/进贤文港毛笔.jpg" alt="进贤文港毛笔">
+            </div>
+            <div class="scroll-text">
+              <p class="scroll-desc">文港毛笔制作技艺始于东晋，已有 1600 余年历史。选料考究、工序繁复，素有"笔中之冠"的美誉。文港镇更被誉为"华夏笔都"，全国 70% 的毛笔产自于此。</p>
+              <div class="scroll-meta">
+                <span class="meta-item">👤 传承人：周鹏程（省级）</span>
+                <span class="meta-item">📜 技艺：水盆工序 · 修笔</span>
+              </div>
+              <button class="btn-workshop" data-index="1">探访工坊 →</button>
+            </div>
+          </div>
+        </div>
+        <div class="node-tags">
+          <span class="tag-item">水盆工序</span>
+          <span class="tag-item">128道工序</span>
+          <span class="tag-item">选料考究</span>
+          <span class="tag-item">🏮 华夏笔都</span>
+          <span class="tag-item">修笔刻字</span>
+        </div>
+      </div>
+
+      <!-- 非遗3：安义木雕（奇数：标签在左，内容在右） -->
+      <div class="scroll-node scroll-node-left" data-aos="fade-up" data-aos-offset="200">
+        <div class="node-bead"><span class="bead-icon">🪵</span></div>
+        <div class="node-tags">
+          <span class="tag-item">浮雕技法</span>
+          <span class="tag-item">透雕工艺</span>
+          <span class="tag-item">樟木楠木</span>
+          <span class="tag-item">龙凤呈祥</span>
+          <span class="tag-item">古建装饰</span>
+        </div>
+        <div class="node-content">
+          <div class="scroll-header">
+            <h3 class="scroll-title">安义木雕</h3>
+            <span class="scroll-tag">省级非遗</span>
+            <span class="scroll-seal seal-brown">雕</span>
+          </div>
+          <div class="scroll-body">
+            <div class="scroll-image">
+              <img src="../assests/img/intangible/安义木雕.jpg" alt="安义木雕">
+            </div>
+            <div class="scroll-text">
+              <p class="scroll-desc">安义木雕以樟木、楠木为材，融合浮雕、透雕、圆雕等多种技法，图案多为龙凤呈祥、花鸟人物，广泛应用于古建筑、家具装饰。刀法刚劲有力，线条流畅灵动，尽显赣地民间木雕之精髓。</p>
+              <div class="scroll-meta">
+                <span class="meta-item">👤 传承人：邹兆庆（省级）</span>
+                <span class="meta-item">📜 技艺：浮雕 · 透雕</span>
+              </div>
+              <button class="btn-workshop" data-index="2">探访工坊 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 传承人时间轴 -->
+      <div class="timeline-break" data-aos="fade-up">
+        <h3 class="timeline-break-title">👐 匠人之手 · 传承谱系</h3>
+        <p class="timeline-break-sub">从清末至今，三代匠心接力</p>
+        <div class="timeline-slider" id="timelineSlider">
+          <div class="timeline-track" id="timelineTrack">
+            <div class="timeline-item active" data-index="0">
+              <div class="tl-avatar" style="background-image: url('../assests/img/intangible/master1.jpg');"></div>
+              <span class="tl-name">陈德明</span>
+              <span class="tl-era">清末 · 瓷板画祖师</span>
+              <span class="tl-quote">"瓷上作画，需心静如冰"</span>
+            </div>
+            <div class="timeline-item" data-index="1">
+              <div class="tl-avatar" style="background-image: url('../assests/img/intangible/master2.jpg');"></div>
+              <span class="tl-name">冯杰</span>
+              <span class="tl-era">现代 · 国家级传承人</span>
+              <span class="tl-quote">"坚守瓷画，便是守护赣魂"</span>
+            </div>
+            <div class="timeline-item" data-index="2">
+              <div class="tl-avatar" style="background-image: url('../assests/img/intangible/master3.jpg');"></div>
+              <span class="tl-name">周鹏程</span>
+              <span class="tl-era">当代 · 文港笔王</span>
+              <span class="tl-quote">"一支笔，写千年"</span>
+            </div>
+            <div class="timeline-item" data-index="3">
+              <div class="tl-avatar" style="background-image: url('../assests/img/intangible/master4.jpg');"></div>
+              <span class="tl-name">邹兆庆</span>
+              <span class="tl-era">当代 · 木雕名家</span>
+              <span class="tl-quote">"刀下有乾坤，木中生万象"</span>
+            </div>
+            <div class="timeline-item" data-index="4">
+              <div class="tl-avatar" style="background-image: url('../assests/img/intangible/master5.jpg');"></div>
+              <span class="tl-name">刘赣生</span>
+              <span class="tl-era">现代 · 赣剧名角</span>
+              <span class="tl-quote">"唱不尽弋阳腔"</span>
+            </div>
+          </div>
+          <button class="tl-btn tl-prev">‹</button>
+          <button class="tl-btn tl-next">›</button>
+          <div class="tl-dots" id="tlDots"></div>
+        </div>
+      </div>
+
+      <!-- 非遗4：西山万寿宫庙会（偶数：内容在左，标签在右） -->
+      <div class="scroll-node scroll-node-right" data-aos="fade-up" data-aos-offset="200">
+        <div class="node-bead"><span class="bead-icon">🏮</span></div>
+        <div class="node-content">
+          <div class="scroll-header">
+            <h3 class="scroll-title">西山万寿宫庙会</h3>
+            <span class="scroll-tag">国家级非遗</span>
+            <span class="scroll-seal seal-orange">祭</span>
+          </div>
+          <div class="scroll-body">
+            <div class="scroll-image">
+              <img src="../assests/img/intangible/西山万寿宫庙会.jpg" alt="西山万寿宫庙会">
+            </div>
+            <div class="scroll-text">
+              <p class="scroll-desc">西山万寿宫庙会源自东晋，为纪念许真君而设。每年农历八月，数十万信众齐聚西山，形成"朝仙"盛景。庙会融祭祀、商贸、游艺于一体，是赣鄱民俗文化的活态博物馆。</p>
+              <div class="scroll-meta">
+                <span class="meta-item">👤 传承群体：西山万寿宫管委会</span>
+                <span class="meta-item">📜 民俗：朝仙 · 庙市</span>
+              </div>
+              <button class="btn-workshop" data-index="3">探访工坊 →</button>
+            </div>
+          </div>
+        </div>
+        <div class="node-tags">
+          <span class="tag-item">朝仙盛典</span>
+          <span class="tag-item">庙市商贸</span>
+          <span class="tag-item">民间游艺</span>
+          <span class="tag-item">万人朝拜</span>
+          <span class="tag-item">许真君</span>
+        </div>
+      </div>
+
+      <!-- 非遗5：赣剧（奇数：标签在左，内容在右） -->
+      <div class="scroll-node scroll-node-left" data-aos="fade-up" data-aos-offset="200">
+        <div class="node-bead"><span class="bead-icon">🎭</span></div>
+        <div class="node-tags">
+          <span class="tag-item">弋阳腔</span>
+          <span class="tag-item">高亢激越</span>
+          <span class="tag-item">🎭 南戏活化石</span>
+          <span class="tag-item">《还魂记》</span>
+          <span class="tag-item">《窦娥冤》</span>
+        </div>
+        <div class="node-content">
+          <div class="scroll-header">
+            <h3 class="scroll-title">赣剧</h3>
+            <span class="scroll-tag">国家级非遗</span>
+            <span class="scroll-seal seal-purple">唱</span>
+          </div>
+          <div class="scroll-body">
+            <div class="scroll-image">
+              <img src="../assests/img/intangible/赣剧.jpg" alt="赣剧">
+            </div>
+            <div class="scroll-text">
+              <p class="scroll-desc">赣剧由弋阳腔演变而来，是江西最具代表性的地方戏曲剧种。唱腔高亢激越、表演粗犷豪放，经典剧目《还魂记》《窦娥冤》等传唱至今。赣剧被誉为"南戏活化石"，承载着赣鄱大地的文化记忆与情感认同。</p>
+              <div class="scroll-meta">
+                <span class="meta-item">👤 传承人：陈俐（国家级）</span>
+                <span class="meta-item">📜 声腔：弋阳腔 · 青阳腔</span>
+              </div>
+              <button class="btn-workshop" data-index="4">探访工坊 →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 非遗6：南昌采茶戏（偶数：内容在左，标签在右） -->
+      <div class="scroll-node scroll-node-right" data-aos="fade-up" data-aos-offset="200">
+        <div class="node-bead"><span class="bead-icon">🍵</span></div>
+        <div class="node-content">
+          <div class="scroll-header">
+            <h3 class="scroll-title">南昌采茶戏</h3>
+            <span class="scroll-tag">省级非遗</span>
+            <span class="scroll-seal seal-tea">戏</span>
+          </div>
+          <div class="scroll-body">
+            <div class="scroll-image">
+              <img src="../assests/img/intangible/南昌采茶戏.jpg" alt="南昌采茶戏">
+            </div>
+            <div class="scroll-text">
+              <p class="scroll-desc">南昌采茶戏源自民间茶歌、灯彩，唱腔清亮婉转、表演生动诙谐，极具赣地乡土气息。传统剧目《秧麦》《磨豆腐》等，以方言俚语演绎百姓生活，是南昌人最亲切的乡音记忆。</p>
+              <div class="scroll-meta">
+                <span class="meta-item">👤 传承人：魏筱妹（省级）</span>
+                <span class="meta-item">📜 声腔：茶歌 · 灯调</span>
+              </div>
+              <button class="btn-workshop" data-index="5">探访工坊 →</button>
+            </div>
+          </div>
+        </div>
+        <div class="node-tags">
+          <span class="tag-item">茶歌灯调</span>
+          <span class="tag-item">清亮婉转</span>
+          <span class="tag-item">乡土气息</span>
+          <span class="tag-item">《秧麦磨豆腐》</span>
+          <span class="tag-item">方言俚语</span>
+        </div>
+      </div>
+
+      <div class="axis-end">
+        <span class="axis-end-text">匠心不息 · 传承不止</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 非遗小考 -->
+  <section class="quiz-wrap" data-aos="fade-up">
+    <div class="quiz-inner">
+      <h2 class="quiz-title">📝 非遗小考 · 匠心问答</h2>
+      <p class="quiz-sub">测一测你对南昌非遗的了解有多少</p>
+      <div class="quiz-container" id="quizContainer"></div>
+      <div class="quiz-result" id="quizResult" style="display:none;">
+        <p class="result-text">🎉 你答对了 <span id="scoreNum">0</span> 题！</p>
+        <p class="result-msg" id="resultMsg">继续加油，匠心传承人！</p>
+        <button class="btn-quiz-reset" id="quizReset">重新挑战</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 底部CTA -->
+  <section class="intangible-footer-cta" data-aos="zoom-in">
+    <div class="cta-bg-pattern"></div>
+    <div class="cta-content">
+      <h2>匠心传世 · 文脉永续</h2>
+      <p>每一项非遗都是活着的记忆，等待你我去聆听、去守护</p>
+      <div class="cta-buttons">
+        <a href="../index.html" class="btn-red cta-btn">🏠 返回首页探索</a>
+        <a href="feedback.html" class="btn-gold cta-btn">💬 分享你的非遗记忆</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="float-tools">
+  <button class="back-top-btn">↑</button>
+  <div class="share-wrap">
+    <button class="share-btn">分享</button>
+    <div class="share-popup"><p>分享本站</p><span class="copy-link">复制链接</span></div>
+  </div>
+  <button class="service-btn">文旅咨询</button>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div class="footer-top">
+      <div class="footer-col"><h3>豫章风华</h3><p>豫章故郡，洪都新府。聚焦南昌千年历史、红色文化、非遗民俗、赣菜风光，线上南昌文化数字展馆。</p><div class="social-icons"><a href="#">微信</a><a href="#">小红书</a><a href="#">微博</a></div></div>
+      <div class="footer-col"><h3>文化探索</h3><ul><li><a href="history.html">千年豫章历史</a></li><li><a href="intangible.html">南昌非遗名录</a></li><li><a href="scenic.html">名胜古迹打卡</a></li><li><a href="poem-tengwang.html">滕王阁序赏析</a></li></ul></div>
+      <div class="footer-col"><h3>文旅服务</h3><ul><li><a href="food.html">赣菜美食攻略</a></li><li><a href="city-map.html">交互式打卡地图</a></li><li><a href="red-study.html">红色研学路线</a></li><li><a href="strategy.html">全域游玩指南</a></li></ul></div>
+      <div class="footer-col"><h3>关于我们</h3><ul><li><a href="about.html">网站介绍</a></li><li><a href="community.html">游客投稿社区</a></li><li><a href="feedback.html">意见留言反馈</a></li><li><a href="#">联系文旅官方</a></li></ul></div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom"><p>© 2026 豫章风华·南昌城市文化数字展馆 版权所有</p><p>赣ICP备XXXXXX号 | 无障碍浏览入口 | 网站地图</p></div>
+  </div>
+</footer>
+
+<script src="../assets/lib/aos/aos.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/pages/intangible.js"></script>
+<script>AOS.init({ duration: 800, once: true, offset: 100 })</script>
+</body>
+</html>

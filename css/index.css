@@ -1,0 +1,652 @@
+/* 通用区块标题 */
+.section-title {
+  font-size: 28px;
+  color: var(--color-red);
+  text-align: center;
+  margin: 60px 0 36px;
+  position: relative;
+}
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: var(--color-gold);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+/* ========== 1. 全屏视差Banner ========== */
+.banner-wrap {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.parallax-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.layer-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+}
+.layer-2 {
+  pointer-events: none;
+}
+.lantern {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  width: 60px;
+  height: 90px;
+  background: var(--color-red);
+  border-radius: 50% 50% 40% 40%;
+}
+.wave {
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--color-light-cyan);
+  border-radius: 50%;
+  animation: waterWave 4s infinite linear;
+}
+.layer-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  background: rgba(0,0,0,0.35);
+}
+.banner-text h1 {
+  font-size: 52px;
+  margin-bottom: 12px;
+  color: var(--color-gold);
+}
+.banner-text p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.banner-buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+.scroll-tip {
+  font-size: 16px;
+}
+
+/* ========== 2. 数据卡片区域 ========== */
+.data-card-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  perspective: 800px; /* 透视距离，控制倾斜幅度 */
+}
+
+.data-card {
+  padding: 30px 10px;
+  text-align: center;
+  background: #FFFFFF;          /* 确保背景 */
+  border-radius: var(--radius, 10px);
+  box-shadow: var(--shadow, 0 4px 12px rgba(0,0,0,0.08));
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  transform-style: preserve-3d; /* 保留3D子元素（但这里无子元素需要，但保持整体） */
+  will-change: transform;     /* 性能优化 */
+  cursor: pointer;
+}
+
+.data-card:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* 暗色模式适配（可选） */
+html.dark .data-card {
+  background: var(--dark-card, #2D2D36);
+}
+
+
+.data-card h3 {
+  font-size: 42px;
+  color: var(--color-red);
+  margin-bottom: 8px;
+}
+
+.four-culture-wrap {
+  margin: 60px 0;
+}
+.section-title {
+  font-size: 28px;
+  color: var(--color-red);
+  text-align: center;
+  margin: 0 0 60px;
+  position: relative;
+}
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: var(--color-gold);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+
+/* 核心：弹性布局+负gap实现卡片左右重叠 */
+.four-card-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: -90px; /* 负值=重叠宽度，-90代表互相重叠90px */
+  padding: 30px 0;
+}
+
+.four-card {
+  width: 260px;
+  height: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease, z-index 0s;
+  perspective: 1000px;
+}
+
+/* 从左到右层级递增，右边卡片压左边卡片，形成阶梯重叠 */
+.four-card:nth-child(1) { z-index: 1; }
+.four-card:nth-child(2) { z-index: 2; }
+.four-card:nth-child(3) { z-index: 3; }
+.four-card:nth-child(4) { z-index: 4; }
+
+.card-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card-text {
+  padding: 16px 20px;
+}
+.card-text h4 {
+  font-size: 26px;
+  color: var(--color-red);
+  margin: 0 0 8px;
+}
+.card-text p {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+/* hover向上滑出抬升，层级拉满置顶，不会被旁边卡片压住 */
+.four-card:hover {
+  transform: translateY(-70px);
+  z-index: 999 !important;
+}
+
+/* 保留你原来图片上下翻转两圈动画 */
+@keyframes flipUpDown {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(720deg); }
+}
+.four-card:hover .card-img img {
+  animation: flipUpDown 0.6s ease-in-out forwards;
+}
+
+/* 平板适配，减少重叠 */
+@media(max-width: 1100px) {
+  .four-card-grid {
+    gap: -50px;
+  }
+  .four-card {
+    width: 220px;
+  }
+  .four-card:hover {
+    transform: translateY(-50px);
+  }
+}
+
+/* 手机端取消重叠，竖排 */
+@media(max-width: 768px) {
+  .four-card-grid {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+  .four-card {
+    width: 85%;
+  }
+  .four-card:hover {
+    transform: translateY(-10px);
+  }
+}
+
+/* ========== 4. 核心：3D CoverFlow立体轮播 ========== */
+.intangible-swiper-wrap {
+  padding: 30px 0;
+}
+.intangible-swiper {
+  padding: 40px 0 60px;
+  overflow: visible !important;
+}
+.intangible-swiper .swiper-slide {
+  width: 70%;
+  height: 340px;
+  transition: all 0.4s ease;
+}
+.slide-img {
+  width: 100%;
+  height: 80%;
+  overflow: hidden;
+}
+.slide-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.slide-desc {
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+}
+.intangible-swiper .swiper-pagination {
+  bottom: 10px;
+}
+
+/* ========== 5. 城市地标展区（不规则瀑布流+倾斜错落） ========== */
+.tab-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+.tab-item {
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+}
+.tab-item.active {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+/* 核心：不规则网格容器，自动适配卡片大小 */
+.scenic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 180px; /* 基础行高 */
+  gap: 16px;
+  padding: 10px;
+}
+
+/* 基础卡片样式，默认轻微倾斜 */
+.scenic-card {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  /* transform: rotate(var(--rotate, 0deg)); /* 读取JS设置的随机角度 */ */
+}
+
+/* 给不同位置的卡片设置不同大小和倾斜角度，形成错落感 */
+/* 第1行 */
+.scenic-card:nth-child(1) {
+  grid-row: span 2; /* 占2行高度 */
+  transform: rotate(-2deg);
+}
+.scenic-card:nth-child(2) {
+  transform: rotate(1.5deg);
+}
+.scenic-card:nth-child(3) {
+  grid-column: span 2; /* 占2列宽度 */
+  transform: rotate(-1deg);
+}
+
+/* 第2行 */
+.scenic-card:nth-child(4) {
+  transform: rotate(2deg);
+}
+.scenic-card:nth-child(5) {
+  grid-row: span 2;
+  grid-column: span 2;
+  transform: rotate(-1.5deg);
+}
+.scenic-card:nth-child(6) {
+  transform: rotate(1deg);
+}
+
+/* 第3行 */
+.scenic-card:nth-child(7) {
+  grid-column: span 2;
+  transform: rotate(-2deg);
+}
+.scenic-card:nth-child(8) {
+  transform: rotate(1.5deg);
+}
+
+/* 图片容器，占满卡片 */
+.scenic-img {
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow: hidden;
+}
+.scenic-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+/* 文字说明 */
+.scenic-card p {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: 500;
+  background: white;
+  margin: 0;
+}
+
+/* 核心交互：鼠标悬停时卡片归正+放大+阴影加深 */
+.scenic-card:hover {
+  transform: rotate(0deg) scale(1.03);
+  z-index: 10; /* 悬浮时层级提高，覆盖其他卡片 */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+.scenic-card:hover .scenic-img img {
+  transform: scale(1.1);
+}
+
+/* 暗色模式适配 */
+html.dark .scenic-card p {
+  background: var(--dark-card);
+}
+
+/* ========== 响应式适配 ========== */
+@media(max-width:992px) {
+  .scenic-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
+  }
+  /* 平板端减小倾斜角度，避免太乱 */
+  .scenic-card {
+    transform: rotate(0deg) !important;
+  }
+  /* 平板端调整大小比例 */
+  .scenic-card:nth-child(1),
+  .scenic-card:nth-child(5) {
+    grid-row: span 1;
+  }
+  .scenic-card:nth-child(3),
+  .scenic-card:nth-child(7) {
+    grid-column: span 1;
+  }
+}
+
+@media(max-width:576px) {
+  .scenic-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+  }
+  .scenic-card {
+    transform: rotate(0deg) !important;
+  }
+}
+
+/* ========== 6. 赣味美食板块（大面积极简多边形+持续跳动） ========== */
+/* 美食板块父容器加溢出隐藏，隔离内部卡片的visible溢出 */
+.food-wrap {
+  overflow: hidden;
+}
+
+/* 路线板块父容器加溢出隐藏 */
+.route-wrap {
+  overflow: hidden;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 20px;
+}
+
+/* 基础美食卡片：大面积极简多边形+持续跳动 */
+.food-card {
+  position: relative;
+  overflow: visible;
+  border-radius: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  animation: foodBounce var(--bounce-duration, 2s) ease-in-out infinite;
+  animation-delay: var(--bounce-delay, 0s);
+}
+
+/* 核心：5种大面积极简多边形，无尖角，面积利用率≥90% */
+/* 1. 圆角六边形（最饱满，推荐） */
+.food-card.shape-1 { clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%); }
+/* 2. 左上斜切矩形 */
+.food-card.shape-2 { clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 15%); }
+/* 3. 右下斜切矩形 */
+.food-card.shape-3 { clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%); }
+/* 4. 上下波浪边矩形 */
+.food-card.shape-4 { clip-path: polygon(0% 8%, 10% 0%, 30% 5%, 50% 0%, 70% 5%, 90% 0%, 100% 8%, 100% 92%, 90% 100%, 70% 95%, 50% 100%, 30% 95%, 10% 100%, 0% 92%); }
+/* 5. 左右内凹矩形 */
+.food-card.shape-5 { clip-path: polygon(5% 0%, 95% 0%, 100% 20%, 100% 80%, 95% 100%, 5% 100%, 0% 80%, 0% 20%); }
+
+/* 图片容器：比卡片大3%，完全填充多边形边缘，无空白 */
+.food-img {
+  width: 106%;
+  height: 220px;
+  margin: -3%;
+  overflow: hidden;
+}
+.food-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* 美食名称：半透明白底，位置居中 */
+.food-card h4 {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 20px;
+  font-size: 16px;
+  color: var(--color-red);
+  margin: 0;
+  z-index: 2;
+}
+
+/* 核心动画：小幅度上下跳动 */
+@keyframes foodBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* hover交互：停止跳动+放大+阴影加深 */
+.food-card:hover {
+  animation-play-state: paused;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.food-card:hover .food-img img {
+  transform: scale(1.1);
+}
+
+/* 暗色模式适配 */
+html.dark .food-card h4 {
+  background: rgba(45,45,54,0.9);
+}
+
+/* ========== 响应式适配 ========== */
+@media(max-width:992px) {
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .food-img {
+    height: 200px;
+  }
+  /* 平板端减小跳动幅度 */
+  @keyframes foodBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+}
+
+@media(max-width:576px) {
+  .food-grid {
+    grid-template-columns: 1fr;
+  }
+  .food-img {
+    height: 220px;
+  }
+  /* 移动端取消跳动，避免干扰 */
+  .food-card {
+    animation: none;
+  }
+}
+
+/* ========== 响应式适配 ========== */
+@media(max-width:992px) {
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .food-img {
+    height: 200px;
+  }
+  /* 平板端减小跳动幅度 */
+  @keyframes foodBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@media(max-width:576px) {
+  .food-grid {
+    grid-template-columns: 1fr;
+  }
+  .food-img {
+    height: 220px;
+  }
+  /* 移动端取消跳动，避免干扰 */
+  .food-card {
+    animation: none;
+  }
+}
+
+/* ========== 7. 青年文创 ========== */
+.youth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.youth-swiper {
+  width: 100%;
+  height: 260px;
+}
+.cu-img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.cu-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.youth-text h4 {
+  font-size: 24px;
+  color: var(--color-red);
+  margin-bottom: 16px;
+}
+
+/* ========== 8. 游玩路线 ========== */
+.route-list {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+.route-card {
+  padding: 24px;
+}
+.route-card h4 {
+  color: var(--color-red);
+  margin-bottom: 10px;
+}
+
+/* ========== 9. 游客瀑布流 ========== */
+.img-waterfall {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 12px;
+}
+.waterfall-item {
+  height: 160px;
+  overflow: hidden;
+}
+.waterfall-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== 响应式适配 ========== */
+@media(max-width:992px) {
+  .banner-text h1 { font-size: 36px; }
+  .data-card-list { grid-template-columns: repeat(2,1fr); }
+  .four-card-grid { grid-template-columns: 1fr; }
+  .scenic-grid { grid-template-columns: repeat(2,1fr); }
+  .food-grid { grid-template-columns: repeat(2,1fr); }
+  .youth-row { grid-template-columns: 1fr; }
+  .route-list { grid-template-columns: 1fr; }
+  .img-waterfall { grid-template-columns: repeat(3,1fr); }
+  .intangible-swiper .swiper-slide { width: 85%; }
+}
+@media(max-width:576px) {
+  .banner-buttons { flex-direction: column; align-items: center; }
+  .data-card-list { grid-template-columns: 1fr; }
+  .scenic-grid { grid-template-columns: 1fr; }
+  .food-grid { grid-template-columns: 1fr; }
+  .img-waterfall { grid-template-columns: repeat(2,1fr); }
+  .section-title { font-size: 22px; }
+}
+
+/* 全局通用"查看更多"按钮容器修复，覆盖所有板块 */
+.more-link-box {
+  width: 100% !important;
+  text-align: center !important;
+  margin-top: 40px !important;
+  margin-bottom: 0 !important;
+  position: static !important;
+  clear: both !important;
+  display: block !important;
+}

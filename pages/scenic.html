@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>城市拼图 · 集章打卡 | 豫章风华</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="../css/pages/scenic.css">
+</head>
+<body>
+
+<!-- ===== 头部导航 ===== -->
+<header class="site-header">
+  <div class="container header-wrap">
+    <a href="../index.html" class="header-logo">
+      <svg class="logo-icon" width="36" height="36" viewBox="0 0 100 100" fill="none">
+        <path d="M10 70 L50 20 L90 70 Z" stroke="#C41E3A" stroke-width="4" fill="none"/>
+        <rect x="30" y="70" width="40" height="25" fill="#D4AF37"/>
+      </svg>
+      <span class="logo-text">豫章风华 · 南昌城市文化</span>
+    </a>
+    <nav class="pc-nav">
+      <a href="../index.html" class="nav-item">首页</a>
+      <a href="history.html" class="nav-item">千年历史</a>
+      <a href="intangible.html" class="nav-item">赣鄱非遗</a>
+      <a href="scenic.html" class="nav-item active">城市地标</a>
+      <a href="food.html" class="nav-item">赣味美食</a>
+      <a href="youth-culture.html" class="nav-item">文创青年</a>
+    </nav>
+    <div class="header-tools">
+      <button class="search-btn">🔍</button>
+      <div class="search-popup">
+        <input type="text" placeholder="搜索景点/美食/非遗..." class="search-input">
+        <button class="search-submit">搜索</button>
+      </div>
+      <button class="theme-toggle" title="切换明暗主题">🌓</button>
+      <button class="mobile-menu-btn">☰</button>
+      <button class="music-btn" id="musicBtn" title="播放背景音乐">
+        <span class="music-icon">🎵</span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-drawer">
+    <button class="drawer-close">✕</button>
+    <nav class="mobile-nav">
+      <a href="../index.html">首页</a>
+      <a href="history.html">千年历史</a>
+      <a href="intangible.html">赣鄱非遗</a>
+      <a href="scenic.html">城市地标</a>
+      <a href="food.html">赣味美食</a>
+      <a href="youth-culture.html">文创青年</a>
+      <a href="poem-tengwang.html">滕王阁序专题</a>
+      <a href="city-map.html">打卡地图</a>
+      <a href="feedback.html">留言反馈</a>
+    </nav>
+  </div>
+  <div class="drawer-mask"></div>
+</header>
+
+<main class="main-content">
+
+  <!-- ===== 首屏 ===== -->
+  <section class="map-hero">
+    <div class="hero-title-group">
+      <h1 class="hero-title">🗺️ 城市拼图</h1>
+      <p class="hero-sub">探索南昌地标 · 收集专属印章</p>
+    </div>
+    <!-- 集章进度条 -->
+    <div class="stamp-progress">
+      <div class="stamp-progress-inner">
+        <div class="stamp-track">
+          <div class="stamp-fill" id="stampFill" style="width:0%;"></div>
+        </div>
+        <span class="stamp-count" id="stampCount">已探索 0 / 6</span>
+      </div>
+      <div class="stamp-icons" id="stampIcons">
+        <span class="stamp-slot" data-index="0">⬜</span>
+        <span class="stamp-slot" data-index="1">⬜</span>
+        <span class="stamp-slot" data-index="2">⬜</span>
+        <span class="stamp-slot" data-index="3">⬜</span>
+        <span class="stamp-slot" data-index="4">⬜</span>
+        <span class="stamp-slot" data-index="5">⬜</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 地图核心区 ===== -->
+  <section class="map-container" id="mapContainer">
+
+    <div class="map-canvas" id="mapCanvas">
+      <!-- 赣江 SVG -->
+      <svg class="river-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+        <path d="M350,0 C320,80 380,160 340,240 C300,320 360,400 330,480 C310,530 340,570 350,600"
+              stroke="#4A90A4" stroke-width="32" fill="none" opacity="0.15" stroke-linecap="round"/>
+        <path d="M370,0 C340,80 400,160 360,240 C320,320 380,400 350,480 C330,530 360,570 370,600"
+              stroke="#4A90A4" stroke-width="20" fill="none" opacity="0.10" stroke-linecap="round"/>
+        <text x="360" y="300" font-size="20" font-family="华文楷体, KaiTi, serif"
+              fill="rgba(74,144,164,0.2)" text-anchor="middle" transform="rotate(-90,360,300)">赣　　江</text>
+      </svg>
+
+      <!-- 地标点位（八一广场已调整到右侧） -->
+      <div class="map-pin" data-index="0" style="top:18%; left:38%;">
+        <div class="pin-dot"><span class="pin-icon">🏯</span></div>
+        <span class="pin-label">滕王阁</span>
+        <div class="pin-ripple"></div>
+      </div>
+      <div class="map-pin" data-index="1" style="top:32%; left:25%;">
+        <div class="pin-dot"><span class="pin-icon">⛩️</span></div>
+        <span class="pin-label">万寿宫</span>
+        <div class="pin-ripple"></div>
+      </div>
+      <div class="map-pin" data-index="2" style="top:45%; left:32%;">
+        <div class="pin-dot"><span class="pin-icon">🗼</span></div>
+        <span class="pin-label">绳金塔</span>
+        <div class="pin-ripple"></div>
+      </div>
+      <div class="map-pin" data-index="3" style="top:50%; left:52%;">
+        <div class="pin-dot"><span class="pin-icon">⭐</span></div>
+        <span class="pin-label">八一广场</span>
+        <div class="pin-ripple"></div>
+      </div>
+      <div class="map-pin" data-index="4" style="top:28%; left:65%;">
+        <div class="pin-dot"><span class="pin-icon">🏙️</span></div>
+        <span class="pin-label">双子塔</span>
+        <div class="pin-ripple"></div>
+      </div>
+      <div class="map-pin" data-index="5" style="top:72%; left:18%;">
+        <div class="pin-dot"><span class="pin-icon">🏺</span></div>
+        <span class="pin-label">海昏侯</span>
+        <div class="pin-ripple"></div>
+      </div>
+
+      <!-- 道路网格 -->
+      <svg class="road-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+        <line x1="200" y1="0" x2="200" y2="600" stroke="rgba(0,0,0,0.03)" stroke-width="1"/>
+        <line x1="400" y1="0" x2="400" y2="600" stroke="rgba(0,0,0,0.03)" stroke-width="1"/>
+        <line x1="600" y1="0" x2="600" y2="600" stroke="rgba(0,0,0,0.03)" stroke-width="1"/>
+        <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(0,0,0,0.03)" stroke-width="1"/>
+        <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(0,0,0,0.03)" stroke-width="1"/>
+        <line x1="0" y1="450" x2="800" y2="450" stroke="rgba(0,0,0,0.03)" stroke-width="1"/>
+      </svg>
+
+      <div class="map-watermark">豫章 · 南昌</div>
+
+      <!-- 地图控制 -->
+      <div class="map-controls">
+        <button class="map-zoom-in" id="zoomIn">＋</button>
+        <button class="map-zoom-out" id="zoomOut">−</button>
+        <button class="map-reset" id="zoomReset">⟲</button>
+      </div>
+    </div>
+
+    <!-- ===== 弹出卡片：所有地标预置 ===== -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="popup-card" id="popupCard">
+
+      <!-- 1. 滕王阁 -->
+      <div class="popup-slide active" data-index="0">
+        <div class="popup-close" data-index="0">✕</div>
+        <div class="popup-content">
+          <div class="popup-image">
+            <img src="../assests/img/banner/滕王阁.jpg" alt="滕王阁" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>🏯</div>'">
+          </div>
+          <div class="popup-info">
+            <h2>滕王阁</h2>
+            <p class="popup-dynasty">唐 · 永徽四年 (公元653年)</p>
+            <p class="popup-style">🏗️ 唐代楼阁 · 高57.5米 · 明三层暗七层</p>
+            <p class="popup-desc">滕王阁位于南昌市赣江东岸，为唐太宗李世民之弟——滕王李元婴所建。公元675年，初唐四杰之一的王勃途经南昌，适逢阎伯屿重修滕王阁落成，即席赋《滕王阁序》，以"落霞与孤鹜齐飞，秋水共长天一色"的千古名句，使滕王阁名扬天下。此后滕王阁历经宋、元、明、清共29次重建与修缮，现存建筑为1989年仿宋代形制重建，高57.5米，明三层暗七层，飞檐翘角，气势恢宏。</p>
+            <div class="popup-tags">
+              <span class="popup-tag">🏛️ 江南三大名楼</span>
+              <span class="popup-tag">📜 国家5A级景区</span>
+              <span class="popup-tag">🌅 赣江胜景</span>
+              <span class="popup-tag">📖 王勃《滕王阁序》</span>
+            </div>
+            <div class="popup-map">
+              <a href="https://api.map.baidu.com/marker?location=28.680637,115.880554&title=滕王阁&content=南昌市东湖区赣江东岸&output=html&src=webapp" target="_blank" class="btn-map">🗺️ 查看地图位置</a>
+            </div>
+            <div class="popup-stamp">
+              <span class="stamp-badge" id="stamp0">🏮 已集章</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 万寿宫 -->
+      <div class="popup-slide" data-index="1" style="display:none;">
+        <div class="popup-close" data-index="1">✕</div>
+        <div class="popup-content">
+          <div class="popup-image">
+            <img src="../assests/img/intangible/西山万寿宫庙会.jpg" alt="万寿宫" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>⛩️</div>'">
+          </div>
+          <div class="popup-info">
+            <h2>万寿宫</h2>
+            <p class="popup-dynasty">明 · 洪武年间 (公元1368年)</p>
+            <p class="popup-style">🏗️ 明代宫观 · 道教净明派祖庭</p>
+            <p class="popup-desc">万寿宫位于南昌市西湖区，始建于明洪武年间，是为纪念东晋道教净明派祖师许逊而建的宫观。许逊以"忠孝廉慎"为教旨，倡导"净明忠孝"之道，被后世尊为"许真君"。万寿宫不仅是道教圣地，更是江右商帮的精神家园——明清时期，江西商人行商天下，每到一地必建"万寿宫"作为会馆，全国曾有数千座万寿宫。南昌万寿宫作为祖庭，历经六百余年风雨，见证了赣鄱大地的商贸繁荣与人文昌盛。</p>
+            <div class="popup-tags">
+              <span class="popup-tag">⛩️ 道教圣地</span>
+              <span class="popup-tag">🏮 江右商帮祖庭</span>
+              <span class="popup-tag">📿 省级文保</span>
+              <span class="popup-tag">🌿 净明忠孝文化</span>
+            </div>
+            <div class="popup-map">
+              <a href="https://api.map.baidu.com/marker?location=28.673800,115.884700&title=万寿宫&content=南昌市西湖区中山路&output=html&src=webapp" target="_blank" class="btn-map">🗺️ 查看地图位置</a>
+            </div>
+            <div class="popup-stamp">
+              <span class="stamp-badge" id="stamp1">🏮 已集章</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 绳金塔 -->
+      <div class="popup-slide" data-index="2" style="display:none;">
+        <div class="popup-close" data-index="2">✕</div>
+        <div class="popup-content">
+          <div class="popup-image">
+            <img src="../assests/img/scenic/绳金塔.jpg" alt="绳金塔" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>🗼</div>'">
+          </div>
+          <div class="popup-info">
+            <h2>绳金塔</h2>
+            <p class="popup-dynasty">唐 · 天祐年间 (公元904年)</p>
+            <p class="popup-style">🏗️ 唐代始建 · 七层八面 · 高50.86米</p>
+            <p class="popup-desc">绳金塔位于南昌市西湖区绳金塔街，始建于唐天祐年间（公元904年），相传建塔时掘得铁函一只，内有金绳四匝、古剑三把（分别刻有"驱风"、"镇火"、"降蛟"字样），还有舍利子三百余粒，故名"绳金塔"。塔身七层八面，高50.86米，为砖木结构楼阁式塔，是南昌现存最古老的砖木结构塔楼。绳金塔历经宋、元、明、清多次修缮，1966年曾遭严重破坏，1985年按原貌修复。塔顶的鎏金葫芦宝瓶，在阳光下熠熠生辉，被誉为"南昌镇城之宝"。</p>
+            <div class="popup-tags">
+              <span class="popup-tag">🏯 千年古塔</span>
+              <span class="popup-tag">🔮 南昌镇城之宝</span>
+              <span class="popup-tag">📿 省级文保</span>
+              <span class="popup-tag">🏛️ 楼阁式砖木塔</span>
+            </div>
+            <div class="popup-map">
+              <a href="https://api.map.baidu.com/marker?location=28.667600,115.889500&title=绳金塔&content=南昌市西湖区绳金塔街&output=html&src=webapp" target="_blank" class="btn-map">🗺️ 查看地图位置</a>
+            </div>
+            <div class="popup-stamp">
+              <span class="stamp-badge" id="stamp2">🏮 已集章</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 八一广场 -->
+      <div class="popup-slide" data-index="3" style="display:none;">
+        <div class="popup-close" data-index="3">✕</div>
+        <div class="popup-content">
+          <div class="popup-image">
+            <img src="../assests/img/banner/美术馆.jpg" alt="八一广场" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>⭐</div>'">
+          </div>
+          <div class="popup-info">
+            <h2>八一广场</h2>
+            <p class="popup-dynasty">现代 · 1950年代 (公元1952年)</p>
+            <p class="popup-style">🏗️ 现代广场 · 占地7.8万㎡ · 纪念塔高53.6米</p>
+            <p class="popup-desc">八一广场位于南昌市东湖区，始建于1952年，原名"人民广场"，是南昌市的政治、文化、体育中心。广场占地面积约7.8万平方米，中央矗立的八一起义纪念塔高53.6米，由叶剑英元帅题写"八一起义纪念塔"塔名。纪念塔基座四面镶嵌着"南昌起义"、"秋收起义"、"井冈山斗争"、"红都瑞金"四幅大型花岗岩浮雕，生动再现了中国共产党领导武装斗争的光辉历程。八一广场是南昌英雄城的标志性建筑与城市客厅，承载着深厚的红色记忆与革命精神。</p>
+            <div class="popup-tags">
+              <span class="popup-tag">⭐ 红色地标</span>
+              <span class="popup-tag">🏛️ 城市中心广场</span>
+              <span class="popup-tag">📸 南昌城市名片</span>
+              <span class="popup-tag">🗿 八一起义纪念塔</span>
+            </div>
+            <div class="popup-map">
+              <a href="https://api.map.baidu.com/marker?location=28.673854,115.904439&title=八一广场&content=南昌市东湖区八一大道&output=html&src=webapp" target="_blank" class="btn-map">🗺️ 查看地图位置</a>
+            </div>
+            <div class="popup-stamp">
+              <span class="stamp-badge" id="stamp3">🏮 已集章</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 双子塔 -->
+      <div class="popup-slide" data-index="4" style="display:none;">
+        <div class="popup-close" data-index="4">✕</div>
+        <div class="popup-content">
+          <div class="popup-image">
+            <img src="../assests/img/banner/双子塔.jpg" alt="双子塔" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>🏙️</div>'">
+          </div>
+          <div class="popup-info">
+            <h2>双子塔</h2>
+            <p class="popup-dynasty">现代 · 2010年代 (公元2010年)</p>
+            <p class="popup-style">🏗️ 超高层双塔 · 303米 · 63层</p>
+            <p class="popup-desc">南昌双子塔位于红谷滩新区赣江之滨，由两栋高度相同、造型对称的超高层塔楼组成，建筑高度303米，共63层，是南昌第一高楼、江西第一高楼，也是中部地区最具标志性的现代建筑之一。双子塔设计灵感源于"腾飞的翅膀"与"赣江双帆"，寓意南昌这座英雄城在新世纪展翅高飞、扬帆远航。塔楼采用全玻璃幕墙与流线型设计，夜间LED灯光秀璀璨夺目，成为赣江两岸最亮丽的天际线。双子塔集五星级酒店、5A级写字楼、高端商业于一体，是南昌现代化城市发展的最佳见证。</p>
+            <div class="popup-tags">
+              <span class="popup-tag">🏙️ 江西第一高楼</span>
+              <span class="popup-tag">🌃 城市新地标</span>
+              <span class="popup-tag">📸 网红打卡地</span>
+              <span class="popup-tag">🌉 赣江天际线</span>
+            </div>
+            <div class="popup-map">
+              <a href="https://api.map.baidu.com/marker?location=28.690600,115.852300&title=双子塔&content=南昌市红谷滩新区赣江中大道&output=html&src=webapp" target="_blank" class="btn-map">🗺️ 查看地图位置</a>
+            </div>
+            <div class="popup-stamp">
+              <span class="stamp-badge" id="stamp4">🏮 已集章</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. 海昏侯遗址 -->
+      <div class="popup-slide" data-index="5" style="display:none;">
+        <div class="popup-close" data-index="5">✕</div>
+        <div class="popup-content">
+          <div class="popup-image">
+            <img src="../assests/img/scenic/海昏侯遗址.jpg" alt="海昏侯遗址" onerror="this.parentElement.innerHTML='<div class=\'no-image\'>🏺</div>'">
+          </div>
+          <div class="popup-info">
+            <h2>海昏侯遗址</h2>
+            <p class="popup-dynasty">汉 · 西汉 (公元前202年)</p>
+            <p class="popup-style">🏗️ 西汉王侯墓 · 出土文物万余件 · 金器115公斤</p>
+            <p class="popup-desc">海昏侯墓位于南昌市新建区大塘坪乡，是西汉昌邑王、汉废帝刘贺的墓葬。刘贺系汉武帝之孙，在位仅27天即被废黜，后被封为海昏侯。2011年，海昏侯墓经考古发掘，出土金器、玉器、漆器、竹简、木牍等珍贵文物一万余件（套），其中金饼、马蹄金、麟趾金等金器共385枚，总重约115公斤，为汉代诸侯王墓出土金器之最。此外，出土的《论语》竹简中发现失传已久的"智（知）道"篇，为儒学思想史研究提供了全新文本依据。海昏侯遗址的发现，被学界誉为"北有兵马俑，南有海昏侯"，是21世纪中国最重大的考古发现之一。</p>
+            <div class="popup-tags">
+              <span class="popup-tag">🏺 汉代王侯墓</span>
+              <span class="popup-tag">📜 十大考古发现</span>
+              <span class="popup-tag">🏛️ 国家考古遗址</span>
+              <span class="popup-tag">📖 出土《论语》竹简</span>
+            </div>
+            <div class="popup-map">
+              <a href="https://api.map.baidu.com/marker?location=28.748600,116.067600&title=海昏侯遗址&content=南昌市新建区大塘坪乡&output=html&src=webapp" target="_blank" class="btn-map">🗺️ 查看地图位置</a>
+            </div>
+            <div class="popup-stamp">
+              <span class="stamp-badge" id="stamp5">🏮 已集章</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 底部提示 ===== -->
+  <div class="map-footer-tip">
+    <p>💡 点击地图上的发光点位 · 探索城市地标 · 收集专属印章</p>
+  </div>
+
+</main>
+
+<!-- ===== 悬浮工具 ===== -->
+<div class="float-tools">
+  <button class="back-top-btn">↑</button>
+  <div class="share-wrap">
+    <button class="share-btn">分享</button>
+    <div class="share-popup"><p>分享本站</p><span class="copy-link">复制链接</span></div>
+  </div>
+  <button class="service-btn">文旅咨询</button>
+</div>
+
+<!-- ===== 底部页脚 ===== -->
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div class="footer-top">
+      <div class="footer-col"><h3>豫章风华</h3><p>豫章故郡，洪都新府。聚焦南昌千年历史、红色文化、非遗民俗、赣菜风光，线上南昌文化数字展馆。</p><div class="social-icons"><a href="#">微信</a><a href="#">小红书</a><a href="#">微博</a></div></div>
+      <div class="footer-col"><h3>文化探索</h3><ul><li><a href="history.html">千年豫章历史</a></li><li><a href="intangible.html">南昌非遗名录</a></li><li><a href="scenic.html">名胜古迹打卡</a></li><li><a href="poem-tengwang.html">滕王阁序赏析</a></li></ul></div>
+      <div class="footer-col"><h3>文旅服务</h3><ul><li><a href="food.html">赣菜美食攻略</a></li><li><a href="city-map.html">交互式打卡地图</a></li><li><a href="red-study.html">红色研学路线</a></li><li><a href="strategy.html">全域游玩指南</a></li></ul></div>
+      <div class="footer-col"><h3>关于我们</h3><ul><li><a href="about.html">网站介绍</a></li><li><a href="community.html">游客投稿社区</a></li><li><a href="feedback.html">意见留言反馈</a></li><li><a href="#">联系文旅官方</a></li></ul></div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom"><p>© 2026 豫章风华·南昌城市文化数字展馆 版权所有</p><p>赣ICP备XXXXXX号 | 无障碍浏览入口 | 网站地图</p></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/pages/scenic.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true, offset: 100 });
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+/* 上浮悬浮 */
+@keyframes float {
+  0%,100% {transform: translateY(0);}
+  50% {transform: translateY(-8px);}
+}
+.float-animate {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* 文字渐显 */
+@keyframes fadeText {
+  from {opacity:0; transform: translateY(10px);}
+  to {opacity:1; transform: translateY(0);}
+}
+.fade-text {
+  animation: fadeText 1s ease forwards;
+}
+
+/* 水波缓慢扩散 */
+@keyframes waterWave {
+  0% {transform: scale(0.8); opacity:0.8;}
+  100% {transform: scale(1.4); opacity:0;}
+}
+
+/* 灯笼左右摆动 */
+@keyframes lanternSwing {
+  0%,100% {transform: rotate(-4deg);}
+  50% {transform: rotate(4deg);}
+}
+.lantern-animate {
+  animation: lanternSwing 3s ease-in-out infinite;
+}
+
+/* 卡片hover抬升已写在global，此处纯关键帧动画 */
+
+/* 新增：图片上下翻转两圈动画 */
+@keyframes flipUpDown {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(720deg); /* 两圈=720度，上下翻转 */
+  }
+}
+
+/* 可选增强版：翻转同时轻微放大，效果更明显 */
+@keyframes flipUpDownScale {
+  0% {
+    transform: rotateX(0deg) scale(1);
+  }
+  50% {
+    transform: rotateX(360deg) scale(1.05); /* 翻转到一半时放大 */
+  }
+  100% {
+    transform: rotateX(720deg) scale(1);
+  }
+}

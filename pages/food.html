@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>烟火食集 · 市井长街 | 豫章风华</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="../css/pages/food.css">
+</head>
+<body>
+
+<!-- ===== 头部导航 ===== -->
+<header class="site-header">
+  <div class="container header-wrap">
+    <a href="../index.html" class="header-logo">
+      <svg class="logo-icon" width="36" height="36" viewBox="0 0 100 100" fill="none">
+        <path d="M10 70 L50 20 L90 70 Z" stroke="#C41E3A" stroke-width="4" fill="none"/>
+        <rect x="30" y="70" width="40" height="25" fill="#D4AF37"/>
+      </svg>
+      <span class="logo-text">豫章风华 · 南昌城市文化</span>
+    </a>
+    <nav class="pc-nav">
+      <a href="../index.html" class="nav-item">首页</a>
+      <a href="history.html" class="nav-item">千年历史</a>
+      <a href="intangible.html" class="nav-item">赣鄱非遗</a>
+      <a href="scenic.html" class="nav-item">城市地标</a>
+      <a href="food.html" class="nav-item active">赣味美食</a>
+      <a href="youth-culture.html" class="nav-item">文创青年</a>
+    </nav>
+    <div class="header-tools">
+      <button class="search-btn">🔍</button>
+      <div class="search-popup">
+        <input type="text" placeholder="搜索景点/美食/非遗..." class="search-input">
+        <button class="search-submit">搜索</button>
+      </div>
+      <button class="theme-toggle" title="切换明暗主题">🌓</button>
+      <button class="mobile-menu-btn">☰</button>
+      <button class="music-btn" id="musicBtn" title="播放背景音乐">
+        <span class="music-icon">🎵</span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-drawer">
+    <button class="drawer-close">✕</button>
+    <nav class="mobile-nav">
+      <a href="../index.html">首页</a>
+      <a href="history.html">千年历史</a>
+      <a href="intangible.html">赣鄱非遗</a>
+      <a href="scenic.html">城市地标</a>
+      <a href="food.html">赣味美食</a>
+      <a href="youth-culture.html">文创青年</a>
+      <a href="poem-tengwang.html">滕王阁序专题</a>
+      <a href="city-map.html">打卡地图</a>
+      <a href="feedback.html">留言反馈</a>
+    </nav>
+  </div>
+  <div class="drawer-mask"></div>
+</header>
+
+<main class="main-content">
+
+  <!-- ===== 首屏：烟火序章 ===== -->
+  <section class="food-hero-street">
+    <div class="hero-street-content">
+      <div class="hero-lantern-group">
+        <span class="lantern">🏮</span>
+        <span class="lantern">🏮</span>
+        <span class="lantern">🏮</span>
+      </div>
+      <h1 class="hero-street-title">烟火食集</h1>
+      <p class="hero-street-sub">南昌深夜美食街 · 市井烟火气</p>
+      <div class="hero-street-line"></div>
+      <p class="hero-street-desc">左右滑动 · 漫步长街 · 探寻赣味</p>
+    </div>
+    <div class="hero-street-bg">
+      <span class="bg-char" style="left:5%;">夜</span>
+      <span class="bg-char" style="left:25%;">市</span>
+      <span class="bg-char" style="left:50%;">江</span>
+      <span class="bg-char" style="left:75%;">湖</span>
+    </div>
+  </section>
+
+  <!-- ===== 核心：市井长街 ===== -->
+  <section class="street-wrap">
+    <div class="street-header">
+      <div class="street-title-group">
+        <span class="street-icon">🏮</span>
+        <span class="street-label" id="streetLabel">南昌 · 珠宝街</span>
+      </div>
+      <div class="street-progress">
+        <span class="street-count" id="streetCount">1 / 8</span>
+        <div class="street-dots" id="streetDots"></div>
+      </div>
+    </div>
+
+    <div class="street-scene" id="streetScene">
+      <div class="street-track" id="streetTrack"></div>
+      <div class="street-ground"></div>
+      <div class="street-ground-lines"></div>
+      <div class="street-fade-left"></div>
+      <div class="street-fade-right"></div>
+    </div>
+
+    <div class="street-controls">
+      <button class="street-btn prev" id="streetPrev">‹</button>
+      <button class="street-btn next" id="streetNext">›</button>
+      <span class="street-hint">👆 拖拽漫步 · 点击品尝</span>
+    </div>
+  </section>
+
+  <!-- ===== 详情弹窗（图片预置在HTML中） ===== -->
+  <div class="detail-overlay" id="detailOverlay"></div>
+  <div class="detail-card" id="detailCard">
+
+    <!-- 0. 南昌拌粉 -->
+    <div class="detail-slide active" data-index="0">
+      <button class="detail-close" data-index="0">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assests/img/banner/南昌拌粉.jpg" alt="南昌拌粉" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🍜</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>南昌拌粉</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️🌶️🌶️ · 中辣</span>
+            <span class="detail-type">主食 · 拌类</span>
+          </div>
+          <p class="detail-desc">南昌早餐灵魂，优质晚米制粉，配花生米、萝卜干、辣椒油拌匀，香辣爽滑，入选"中国地域十大名小吃"。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🍜 早餐经典</span>
+            <span class="detail-tag">🌶️ 香辣开胃</span>
+            <span class="detail-tag">🏆 中国地域名小吃</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">周真真拌粉（总店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. 瓦罐汤 -->
+    <div class="detail-slide" data-index="1" style="display:none;">
+      <button class="detail-close" data-index="1">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assets/img/food/瓦罐汤.jpg" alt="瓦罐汤" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🥣</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>瓦罐汤</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️ · 微辣</span>
+            <span class="detail-type">汤品 · 煨制</span>
+          </div>
+          <p class="detail-desc">特制瓦罐炭火慢煨数小时，汤色清亮醇厚，品种多达数十种，2010年入选江西省非物质文化遗产。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🥣 非遗美食</span>
+            <span class="detail-tag">🔥 慢火煨制</span>
+            <span class="detail-tag">💧 滋补养生</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">民间饭庄·瓦罐汤（系马桩店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 藜蒿炒腊肉 -->
+    <div class="detail-slide" data-index="2" style="display:none;">
+      <button class="detail-close" data-index="2">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assets/img/food/藜蒿炒腊肉.jpg" alt="藜蒿炒腊肉" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🥬</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>藜蒿炒腊肉</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️ · 微辣</span>
+            <span class="detail-type">炒菜 · 时令</span>
+          </div>
+          <p class="detail-desc">鄱阳湖藜蒿配黑猪腊肉快炒，清香爽脆与咸香交融，时令与匠心结合的赣菜经典，2006年入选中国名菜。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🥬 时令春菜</span>
+            <span class="detail-tag">🥩 腊肉飘香</span>
+            <span class="detail-tag">⭐ 中国名菜</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">南昌味道·赣菜馆（红谷滩店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 白糖糕 -->
+    <div class="detail-slide" data-index="3" style="display:none;">
+      <button class="detail-close" data-index="3">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assets/img/food/白糖糕.jpg" alt="白糖糕" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🍬</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>白糖糕</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️ · 不辣</span>
+            <span class="detail-type">小吃 · 甜点</span>
+          </div>
+          <p class="detail-desc">百年历史的南昌名小吃，糯米粉油炸后撒白糖芝麻，外酥里嫩香甜软糯，承载着几代南昌人的童年记忆。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🍬 百年小吃</span>
+            <span class="detail-tag">😋 外酥里嫩</span>
+            <span class="detail-tag">📿 市非遗</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">南昌白糖糕老店（万寿宫店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 糊羹 -->
+    <div class="detail-slide" data-index="4" style="display:none;">
+      <button class="detail-close" data-index="4">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assets/img/food/糊羹.jpg" alt="糊羹" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🥄</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>糊羹</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️ · 微辣</span>
+            <span class="detail-type">小吃 · 羹类</span>
+          </div>
+          <p class="detail-desc">冬日街头暖胃小吃，豆腐、香菇、木耳、肉末等切丁与山芋粉熬制浓稠，鲜香滑润，数百年历史的南昌味道。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🥄 冬日暖胃</span>
+            <span class="detail-tag">🍄 食材丰富</span>
+            <span class="detail-tag">🏮 街头记忆</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">南昌老糊羹铺（羊子巷店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 辣椒炒肉 -->
+    <div class="detail-slide" data-index="5" style="display:none;">
+      <button class="detail-close" data-index="5">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assets/img/food/辣椒炒肉.jpg" alt="辣椒炒肉" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🔥</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>辣椒炒肉</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️🌶️🌶️🌶️ · 重辣</span>
+            <span class="detail-type">炒菜 · 家常</span>
+          </div>
+          <p class="detail-desc">本地辣椒与五花肉猛火快炒，辣味与油脂交融锅气十足，看似简单却考验火候，被南昌人称为"下饭神器"。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🔥 锅气十足</span>
+            <span class="detail-tag">🍚 下饭神器</span>
+            <span class="detail-tag">🏠 赣菜之魂</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">赣味人家·辣椒炒肉（中山路店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 三杯鸡 -->
+    <div class="detail-slide" data-index="6" style="display:none;">
+      <button class="detail-close" data-index="6">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assets/img/food/三杯鸡.jpg" alt="三杯鸡" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🐔</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>三杯鸡</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️🌶️ · 中辣</span>
+            <span class="detail-type">烧菜 · 焖制</span>
+          </div>
+          <p class="detail-desc">一杯酱油、一杯料酒、一杯麻油焖煮而成，鸡肉鲜嫩多汁香气扑鼻，被誉为"赣菜三绝"之一。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🐔 赣菜三绝</span>
+            <span class="detail-tag">🍶 三杯酱香</span>
+            <span class="detail-tag">⭐ 招牌菜</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">赣菜名楼·三杯鸡（绿茵路店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 南昌炒粉 -->
+    <div class="detail-slide" data-index="7" style="display:none;">
+      <button class="detail-close" data-index="7">✕</button>
+      <div class="detail-content">
+        <div class="detail-image">
+          <img src="../assets/img/food/南昌炒粉.jpg" alt="南昌炒粉" onerror="this.parentElement.innerHTML='<div class=\'no-img\'>🍜</div>'">
+        </div>
+        <div class="detail-info">
+          <h2>南昌炒粉</h2>
+          <div class="detail-meta">
+            <span class="detail-spicy">🌶️🌶️🌶️ · 中辣</span>
+            <span class="detail-type">主食 · 炒类</span>
+          </div>
+          <p class="detail-desc">粗米粉配肉丝、鸡蛋、豆芽猛火快炒，干爽入味有嚼劲锅气十足，是南昌夜宵文化的灵魂。</p>
+          <div class="detail-tags">
+            <span class="detail-tag">🌙 夜宵之王</span>
+            <span class="detail-tag">🔥 锅气炒粉</span>
+            <span class="detail-tag">🏙️ 南昌记忆</span>
+          </div>
+          <div class="detail-shop">
+            <span class="shop-label">🏪 老字号推荐</span>
+            <span class="shop-name">珠宝街炒粉（夜宵老店）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ===== 悬浮工具 ===== -->
+<div class="float-tools">
+  <button class="back-top-btn">↑</button>
+  <div class="share-wrap">
+    <button class="share-btn">分享</button>
+    <div class="share-popup"><p>分享本站</p><span class="copy-link">复制链接</span></div>
+  </div>
+  <button class="service-btn">文旅咨询</button>
+</div>
+
+<!-- ===== 底部页脚 ===== -->
+<footer class="site-footer">
+  <div class="container footer-wrap">
+    <div class="footer-top">
+      <div class="footer-col"><h3>豫章风华</h3><p>豫章故郡，洪都新府。聚焦南昌千年历史、红色文化、非遗民俗、赣菜风光，线上南昌文化数字展馆。</p><div class="social-icons"><a href="#">微信</a><a href="#">小红书</a><a href="#">微博</a></div></div>
+      <div class="footer-col"><h3>文化探索</h3><ul><li><a href="history.html">千年豫章历史</a></li><li><a href="intangible.html">南昌非遗名录</a></li><li><a href="scenic.html">名胜古迹打卡</a></li><li><a href="poem-tengwang.html">滕王阁序赏析</a></li></ul></div>
+      <div class="footer-col"><h3>文旅服务</h3><ul><li><a href="food.html">赣菜美食攻略</a></li><li><a href="city-map.html">交互式打卡地图</a></li><li><a href="red-study.html">红色研学路线</a></li><li><a href="strategy.html">全域游玩指南</a></li></ul></div>
+      <div class="footer-col"><h3>关于我们</h3><ul><li><a href="about.html">网站介绍</a></li><li><a href="community.html">游客投稿社区</a></li><li><a href="feedback.html">意见留言反馈</a></li><li><a href="#">联系文旅官方</a></li></ul></div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom"><p>© 2026 豫章风华·南昌城市文化数字展馆 版权所有</p><p>赣ICP备XXXXXX号 | 无障碍浏览入口 | 网站地图</p></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/pages/food.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true, offset: 100 });
+</script>
+</body>
+</html>
