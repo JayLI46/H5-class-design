@@ -253,6 +253,8 @@ html.dark .data-card {
   width: 70%;
   height: 340px;
   transition: all 0.4s ease;
+  border-radius: 12px;
+  overflow: hidden;
 }
 .slide-img {
   width: 100%;
@@ -266,12 +268,26 @@ html.dark .data-card {
 }
 .slide-desc {
   text-align: center;
-  padding: 10px;
+  padding: 12px 10px;
   font-size: 18px;
+  font-weight: 600;
+  color: var(--color-red, #C41E3A);
+  background: rgba(255,255,255,0.92);
+  border-radius: 0 0 12px 12px;
+  letter-spacing: 2px;
+  font-family: '华文楷体', 'KaiTi', serif;
+  margin: 0;
 }
 .intangible-swiper .swiper-pagination {
   bottom: 10px;
 }
+
+/* 暗色模式 - 轮播文字 */
+html.dark .slide-desc {
+  background: rgba(30,30,38,0.92);
+  color: #eaeaea;
+}
+
 
 /* ========== 5. 城市地标展区（不规则瀑布流+倾斜错落） ========== */
 .tab-group {
@@ -364,9 +380,19 @@ html.dark .data-card {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  font-weight: 500;
-  background: white;
+  font-weight: 600;
+  color: var(--text-dark, #222);
+  background: #ffffff;
   margin: 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-radius: 0 0 12px 12px;
+}
+
+/* 暗色模式适配 */
+html.dark .scenic-card p {
+  background: var(--dark-card, #2D2D36);
+  color: #eaeaea;
 }
 
 /* 核心交互：鼠标悬停时卡片归正+放大+阴影加深 */
@@ -597,10 +623,37 @@ html.dark .food-card h4 {
 }
 .route-card {
   padding: 24px;
+  background: #ffffff;                    /* 白色背景，确保可读 */
+  border-radius: var(--radius, 12px);
+  box-shadow: var(--shadow, 0 4px 12px rgba(0,0,0,0.08));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.route-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 .route-card h4 {
-  color: var(--color-red);
-  margin-bottom: 10px;
+  font-size: 20px;
+  color: var(--color-red, #C41E3A);
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+  font-family: '华文楷体', 'KaiTi', serif;
+}
+.route-card p {
+  font-size: 15px;
+  color: var(--text-dark, #333);          /* 添加文字颜色 */
+  line-height: 1.6;
+  margin: 0;
+  font-family: '华文楷体', 'KaiTi', serif;
+}
+
+/* 暗色模式适配 */
+html.dark .route-card {
+  background: var(--dark-card, #2D2D36);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+html.dark .route-card p {
+  color: #ccc;
 }
 
 /* ========== 9. 游客瀑布流 ========== */
